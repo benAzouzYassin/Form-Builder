@@ -20,21 +20,21 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <ClerkProvider >
-        <body className={inter.className}>
+      <body className={inter.className}>
+        <ClerkProvider >
           <ThemeProvider>
 
-            <nav className='flex shadow-md shadow-muted pb-3 pt-1 overflow-hidden px-14'>
+            <nav className='flex  shadow-md shadow-muted h-[8vh] overflow-hidden px-14'>
               <img className='w-64  mt-1 ml-3' src="/logo.svg" alt="Form Builder logo" />
               <ThemeSwitcher />
-              <div className='h-fit my-auto pt-2 scale-125 pr-5 hover:scale-[135%] transition-transform '>
+              <div className='h-fit my-auto ml-[-10px] scale-125 pr-5 hover:scale-[135%] transition-transform '>
                 <UserButton afterSignOutUrl='/signin' />
               </div>
             </nav>
             {children}
           </ThemeProvider>
-        </body>
-      </ClerkProvider>
+        </ClerkProvider>
+      </body>
     </html>
   )
 }
