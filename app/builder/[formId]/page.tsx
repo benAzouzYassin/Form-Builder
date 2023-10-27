@@ -1,8 +1,12 @@
+
 import { FormType } from "@/utils/globalTypes"
 import { TopBar } from "./TopBar"
-import SideBar from "./SideBar"
+import Builder from "./Builder"
 
-export default function Builder({ params }: { params: { formId: string } }) {
+
+export default function Page({ params }: { params: { formId: string } }) {
+
+
     const example: FormType = {
         id: "something",
         status: "editing",
@@ -16,8 +20,11 @@ export default function Builder({ params }: { params: { formId: string } }) {
         submissionsList: []
 
     }
-    return <main className="overflow-hidden border-2 ">
+    return <main className="overflow-hidden border-2 " >
         <TopBar name={example.name} />
-        <SideBar />
+
+        <Builder />
+
+
     </main>
 }
