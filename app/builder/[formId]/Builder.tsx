@@ -3,16 +3,15 @@
 import { DndContext, DragEndEvent } from "@dnd-kit/core";
 import Editor from "./Editor";
 import SideBar from "./SideBar";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Builder() {
 
-    const [scrollTopVal, setScrollTopVal] = useState(0)
     const [formElements, setFormElements] = useState<string[]>([])
+
     const handleDragEnd = (event: DragEndEvent) => {
         const { over, active } = event;
         if (over) {
-
             setFormElements(prev => {
                 prev.push(active.id.toString())
                 return prev
@@ -24,10 +23,10 @@ export default function Builder() {
     }, [formElements])
 
 
-    return <div className="flex ">
-        <DndContext onDragEnd={handleDragEnd}>
+    return <div className="flex max-w-[100vw]  overflow-hidden   ">
+        <DndContext onDragEnd={handleDragEnd} autoScroll={false}  >
             <Editor formElements={formElements} />
-            <SideBar scrollTopVal={scrollTopVal} updateTopScrollVal={(n) => setScrollTopVal(n)} />
+            <SideBar />
         </DndContext>
 
     </div>

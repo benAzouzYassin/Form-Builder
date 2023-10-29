@@ -20,9 +20,8 @@ export default function Page({ params }: { params: { formId: string } }) {
         submissionsList: []
 
     }
-    return <main className="overflow-hidden border-2 " >
+    return <main className="overflow-hidden border-2 max-w-[100vw]" >
         <TopBar name={example.name} />
-
         <Builder />
 
 

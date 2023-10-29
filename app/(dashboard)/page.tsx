@@ -5,7 +5,7 @@ import Stats from "./Stats";
 
 export default function Home() {
   return (
-    <div className="mx-56 mt-16 ">
+    <div className="mx-56 pt-[15vh] ">
       <Stats />
       <h1 className="text-4xl font-bold border-y-2 mt-10 py-8 pl-3 ">Your Forms</h1>
       <div className="flex flex-wrap mt-10 gap-5">

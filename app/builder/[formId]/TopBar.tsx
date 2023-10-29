@@ -8,7 +8,7 @@ type Props = {
 }
 
 export function TopBar(props: Props) {
-    return <div className="gap-5 h-[8vh] w-full border-b-2 px-20 shadow-background shadow-sm flex items-center">
+    return <div className="fixed top-[8.1vh] bg-background  gap-5 h-[8vh] w-full border-b-2 px-20 shadow-background shadow-sm flex items-center">
         <p><span className="text-xl font-semibold opacity-90">Form</span> : {props.name}</p>
         <button className="hover:bg-muted  rounded-md py-2 px-4 border-2  ml-auto flex  items-center"><Preview className="" /> Preview</button>
         <button className="hover:bg-muted flex  items-center  rounded-md py-2 px-5 border-2"><Save className="" /> Save</button>
