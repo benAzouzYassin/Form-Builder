@@ -1,22 +1,24 @@
-import DateField from "@/components/formElements/DateField";
-import NumberField from "@/components/formElements/NumberField";
-import Paragraph from "@/components/formElements/Paragraph";
-import SelectField from "@/components/formElements/SelectField";
-import Separator from "@/components/formElements/Separator";
-import Spacer from "@/components/formElements/Spacer";
-import SubTitle from "@/components/formElements/SubTitle";
-import TextField from "@/components/formElements/TextField";
-import TextareaField from "@/components/formElements/TextareaField";
-import Title from "@/components/formElements/Title"
-import CheckField from "@/components/icons/CheckFIeld";
+import { CheckboxField } from "@/components/builderElements/CheckboxField";
+import DateField from "@/components/builderElements/DateField";
+import NumberField from "@/components/builderElements/NumberField";
+import Paragraph from "@/components/builderElements/Paragraph";
+import SelectField from "@/components/builderElements/SelectField";
+import Separator from "@/components/builderElements/Separator";
+import Spacer from "@/components/builderElements/Spacer";
+import SubTitle from "@/components/builderElements/SubTitle";
+import TextField from "@/components/builderElements/TextField";
+import TextareaField from "@/components/builderElements/TextareaField";
+import Title from "@/components/builderElements/Title"
+import { FormElementName } from "@/utils/globalTypes";
 
 // this will only get the element name and will put 
 type Props = {
-    elementName: string
+    elementName: FormElementName
 }
 
 
 export default function FormElement(props: Props) {
+
     switch (props.elementName) {
         case "Title field":
             return <Title />
@@ -30,6 +32,8 @@ export default function FormElement(props: Props) {
             return <Spacer />
         case "Text field":
             return <TextField />
+        case "Textarea field":
+            return <TextareaField />
         case "Number field":
             return <NumberField />
         case "Date field":
@@ -37,8 +41,7 @@ export default function FormElement(props: Props) {
         case "Select field":
             return <SelectField />
         case "Checkbox field":
-            return <CheckField />
-
+            return <CheckboxField />
 
         default:
             break;

@@ -13,7 +13,7 @@ type Props = {
 }
 
 export default function FormDraft(props: Props) {
-    return <div className="relative w-80 h-44 border-2 p-4 border-muted  rounded-md ">
+    return <div className="relative w-[32%] h-44 border-2 p-4 border-muted  rounded-md ">
         <div className="absolute top-3 right-3  text-sm font-semibold ">{props.status === "editing" ? <span className="w-full rounded-md py-1 px-2 bg-destructive text-white ">Draft</span> : <span className="w-full rounded-md py-1 px-2 bg-foreground text-background">Published</span>}</div>
         <p className="font-bold text-foreground opacity-90  text-2xl">{props.name}</p>
         <div className="flex w-full">

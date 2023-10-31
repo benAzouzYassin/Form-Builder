@@ -15,7 +15,7 @@ import { RefObject } from "react";
 
 
 export default function SideBar() {
-    return <aside className=" max-w-[20%] mt-[17vh] ml-auto  px-10 pt-5 h-fit overflow-hidden" >
+    return <aside className=" max-w-[20%]  ml-auto  px-10 pt-5 h-fit overflow-hidden" >
         <p className="text-foreground/70 border-b-[1px] py-1 ">Drag and drop elements</p>
 
         <p className="text-foreground/70  mt-3" >Layout elements</p>
@@ -23,7 +23,7 @@ export default function SideBar() {
             <DraggableElement text="Title field" ><H1Icon /></DraggableElement>
             <DraggableElement text="Sub title field" ><H2Icon /></DraggableElement>
             <DraggableElement text="Paragraph field" ><ParagraphField /></DraggableElement>
-            <DraggableElement text="Separator field " ><SeparatorField /></DraggableElement>
+            <DraggableElement text="Separator field" ><SeparatorField /></DraggableElement>
             <DraggableElement text="Spacer field" ><SpacerField /></DraggableElement>
             <div className="w-24"></div>
         </div>
