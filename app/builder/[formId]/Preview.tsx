@@ -11,7 +11,7 @@ type Props = {
 
 export default function Preview({ className, theme, closePreviewMode }: Props) {
     const formContext = useContext(FormContext)
-    console.log(formContext?.formElements)
+    // console.log(formContext?.previewFormElements)
 
 
     return <div className={className} style={{ background: theme != "light" ? "url(/paper-dark.svg" : "url(/paper.svg)" }} >
@@ -19,7 +19,7 @@ export default function Preview({ className, theme, closePreviewMode }: Props) {
         <div className="w-1/3 mx-auto mt-10  rounded-xl p-4 min-h-[800px] h-fit bg-background">
 
             {
-                formContext?.formElements.map((element, index) => <PreviewElement key={index} {...element} />)
+                formContext?.previewFormElements.map((element, index) => <PreviewElement key={index} {...element} />)
             }
         </div>
 

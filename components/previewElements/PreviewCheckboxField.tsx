@@ -10,4 +10,3 @@ export default function PreviewCheckboxField(props: Props) {
     </div>
 }
 
-// TODO forgot about required and forgot about the names

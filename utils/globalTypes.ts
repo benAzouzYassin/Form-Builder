@@ -25,3 +25,8 @@ export type FormElement = {
     max?: number
     min?: number
 }
+
+export type BuilderElementType = {
+    elementName: string
+    id: string
+}

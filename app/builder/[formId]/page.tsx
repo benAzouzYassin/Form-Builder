@@ -64,8 +64,6 @@ export default function Page({ params }: { params: { formId: string } }) {
                 <Builder />
             </div>
             <Preview closePreviewMode={closePreviewMode} className={previewDynamicClass} theme={theme} />
-
-
         </FormContextProvider>
 
     </main>

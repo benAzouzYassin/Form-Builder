@@ -14,34 +14,35 @@ import { FormElementName } from "@/utils/globalTypes";
 // this will only get the element name and will put 
 type Props = {
     elementName: FormElementName
+    elementId: string
 }
 
 
-export default function FormElement(props: Props) {
+export default function builderElement(props: Props) {
 
     switch (props.elementName) {
         case "Title field":
-            return <Title />
+            return <Title id={props.elementId} />
         case "Sub title field":
-            return <SubTitle />
+            return <SubTitle id={props.elementId} />
         case "Paragraph field":
-            return <Paragraph />
+            return <Paragraph id={props.elementId} />
         case "Separator field":
-            return <Separator />
+            return <Separator id={props.elementId} />
         case "Spacer field":
-            return <Spacer />
+            return <Spacer id={props.elementId} />
         case "Text field":
-            return <TextField />
+            return <TextField id={props.elementId} />
         case "Textarea field":
-            return <TextareaField />
+            return <TextareaField id={props.elementId} />
         case "Number field":
-            return <NumberField />
+            return <NumberField id={props.elementId} />
         case "Date field":
-            return <DateField />
+            return <DateField id={props.elementId} />
         case "Select field":
-            return <SelectField />
+            return <SelectField id={props.elementId} />
         case "Checkbox field":
-            return <CheckboxField />
+            return <CheckboxField id={props.elementId} />
 
         default:
             break;
