@@ -8,12 +8,7 @@ import { useTheme } from "next-themes"
 import Preview from "./Preview"
 
 
-
-
-
 export default function Page({ params }: { params: { formId: string } }) {
-
-
 
     const [previewMode, setPreviewMode] = useState(false)
 

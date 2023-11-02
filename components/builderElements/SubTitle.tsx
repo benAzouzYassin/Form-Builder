@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { DeleteIcon } from "../icons/Delete"
 import DeleteBtn from "../DeleteBtn"
 
 
@@ -11,15 +10,6 @@ export default function SubTitle({ id }: { id: string }) {
 
     return <div className="relative h-[100px]">
         <div onMouseOver={() => setHovering(true)} onMouseLeave={(() => setHovering(false))} className=" z-50 hover:bg-transparent     h-full bg-foreground/5 rounded-sm ring-inset ring-accent ring-2  flex  text-center transition-all hover:text-opacity-50 "><p style={{ opacity: hovering ? 0.3 : 1 }} className="text-xl font-semibold my-auto ml-5">{text}</p>
-            {
-                hovering &&
-                <>
-                    <DeleteBtn id={id} />
-                    <div onClick={() => console.log("drag")} className="   bg-background/70 h-full  w-[91%] absolute  left-0 text-foreground/60  " ><span className="animate-pulse absolute   flex items-center text-center   w-full top-[20%] left-[30%]">Click for properties or drag to move</span></div>
-                </>
-
-            }
-
         </div>
     </div>
 }

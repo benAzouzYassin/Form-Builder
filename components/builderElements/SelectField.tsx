@@ -14,13 +14,6 @@ export default function SelectField({ id }: { id: string }) {
         <p className="w-full text-left ml-[24px] text-sm font-semibold mb-[2px] opacity-80">Select label</p>
         <div className=" h-[40px] w-[95%] mx-auto rounded-[2px] ring-1 ring-foreground/5  ring-inset bg-foreground/5 text-left text-sm text-foreground/80 font-medium  pl-2 flex items-center">Value here... <SelectArrows className=" mr-2  ml-auto scale-150 " /></div>
         <p className="text-xs text-left text-foreground/50 font-medium ml-6 mt-1">Helper text</p>
-        {
-            hovering &&
-            <>
-                <DeleteBtn id={id} />
-                <div onClick={() => console.log("drag")} className=" h-full   bg-background/70  w-[91%] absolute  left-0 text-foreground/60  " ><span className="animate-pulse absolute text-center left-0    w-full top-[40px] ">Click for properties or drag to move</span></div>
-            </>
 
-        }
     </div>
 }

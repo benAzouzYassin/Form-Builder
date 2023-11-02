@@ -16,13 +16,6 @@ export default function NumberField({ id }: { id: string }) {
 
 
         <p className="text-xs text-left text-foreground/50 font-medium ml-6 mt-1">Helper text</p>
-        {
-            hovering &&
-            <>
-                <DeleteBtn id={id} />
-                <div onClick={() => console.log("drag")} className=" h-full   bg-background/70  w-[91%] absolute  left-0 text-foreground/60  " ><span className="animate-pulse absolute text-center left-0    w-full top-[40px] ">Click for properties or drag to move</span></div>
-            </>
 
-        }
     </div>
 }

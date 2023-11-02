@@ -14,12 +14,6 @@ export default function TextareaField({ id }: { id: string }) {
         <p className="w-full text-left ml-[24px] text-sm font-semibold mb-[2px] mt-[2px] opacity-80">Textarea label</p>
         <div className=" h-[80px] w-[95%] mx-auto rounded-[2px] ring-1 ring-foreground/5  ring-inset bg-foreground/5 text-left text-sm text-foreground/40 pt-[6px] pl-2">Place Holder...</div>
         <p className="text-xs text-left text-foreground/50 font-medium ml-6 mt-1">Helper text</p>
-        {
-            hovering &&
-            <>
-                <DeleteBtn id={id} />
-                <div onClick={() => console.log("drag")} className=" h-full   bg-background/70  w-[91%] absolute  left-0 text-foreground/60  " ><span className="animate-pulse absolute text-center left-0    w-full top-[40px] ">Click for properties or drag to move</span></div>
-            </>
-        }
+
     </div>
 }

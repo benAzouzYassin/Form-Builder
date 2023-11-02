@@ -13,15 +13,23 @@ export default function Builder() {
     const formContext = useContext(FormContext)
 
     const handleDragEnd = (event: DragEndEvent) => {
-        const { over, active } = event;
+        const { over, active, collisions } = event;
         if (over) {
-            const newElementName = active.id.toString()
-            const newElementId = newElementName + formContext.previewFormElements.length.toString()
-            formContext.addBuilderElement({ id: newElementId, elementName: newElementName })
-            formContext.addPreviewElement(newElementName)
+            const droppedElementName = active.id.toString()
+            const newElementId = droppedElementName + formContext.builderElements.length.toString()
+            if (active.id !== over.id) {
+                formContext.moveBuilderElement(over.id.toString(), active.id.toString())
+
+            }
+            //TODO add if statement so those only work if i am holding non builder element
+            if (!isSorting(active.id.toString())) {
+                formContext.addBuilderElement({ id: newElementId, elementName: droppedElementName })
+            }
         }
     }
-
+    function isSorting(activeId: string) {
+        return parseInt(activeId[activeId.length - 1]) >= 0
+    }
     return <div className="flex max-w-[100vw]  overflow-hidden   ">
         <DndContext onDragEnd={handleDragEnd} autoScroll={false}  >
             <Editor />

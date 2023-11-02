@@ -10,6 +10,10 @@ import TextField from "@/components/builderElements/TextField";
 import TextareaField from "@/components/builderElements/TextareaField";
 import Title from "@/components/builderElements/Title"
 import { FormElementName } from "@/utils/globalTypes";
+import { CSS } from '@dnd-kit/utilities';
+import { useSortable } from '@dnd-kit/sortable';
+import DeleteBtn from "@/components/DeleteBtn";
+import { ReactElement, useState } from "react";
 
 // this will only get the element name and will put 
 type Props = {
@@ -18,35 +22,60 @@ type Props = {
 }
 
 
-export default function builderElement(props: Props) {
+export default function BuilderElement(props: Props) {
+
 
     switch (props.elementName) {
         case "Title field":
-            return <Title id={props.elementId} />
+            return <SortableProvider elementId={props.elementId}><Title id={props.elementId} /></SortableProvider>
         case "Sub title field":
-            return <SubTitle id={props.elementId} />
+            return <SortableProvider elementId={props.elementId}><SubTitle id={props.elementId} /></SortableProvider>
         case "Paragraph field":
-            return <Paragraph id={props.elementId} />
+            return <SortableProvider elementId={props.elementId}><Paragraph id={props.elementId} /></SortableProvider>
         case "Separator field":
-            return <Separator id={props.elementId} />
+            return <SortableProvider elementId={props.elementId}><Separator id={props.elementId} /></SortableProvider>
         case "Spacer field":
-            return <Spacer id={props.elementId} />
+            return <SortableProvider elementId={props.elementId}><Spacer id={props.elementId} /></SortableProvider>
         case "Text field":
-            return <TextField id={props.elementId} />
+            return <SortableProvider elementId={props.elementId}><TextField id={props.elementId} /></SortableProvider>
         case "Textarea field":
-            return <TextareaField id={props.elementId} />
+            return <SortableProvider elementId={props.elementId}><TextareaField id={props.elementId} /></SortableProvider>
         case "Number field":
-            return <NumberField id={props.elementId} />
+            return <SortableProvider elementId={props.elementId}><NumberField id={props.elementId} /></SortableProvider>
         case "Date field":
-            return <DateField id={props.elementId} />
+            return <SortableProvider elementId={props.elementId}><DateField id={props.elementId} /></SortableProvider>
         case "Select field":
-            return <SelectField id={props.elementId} />
+            return <SortableProvider elementId={props.elementId}><SelectField id={props.elementId} /></SortableProvider>
         case "Checkbox field":
-            return <CheckboxField id={props.elementId} />
+            return <SortableProvider elementId={props.elementId}><CheckboxField id={props.elementId} /></SortableProvider>
 
         default:
             break;
     }
 
     return <div>{props.elementName}</div>
+}
+function SortableProvider({ children, elementId }: { elementId: string, children: ReactElement }) {
+    const {
+        attributes,
+        listeners,
+        setNodeRef,
+        transform,
+        transition,
+        isDragging,
+        isSorting
+    } = useSortable({ id: elementId });
+    // @ts-ignore
+    const style = {
+        transform: CSS.Transform.toString(transform),
+        transition,
+    };
+    const [hovering, setHovering] = useState(false)
+
+    return <div onMouseEnter={() => setHovering(true)} onMouseLeave={() => setHovering(false)} className="relative">
+        {hovering && !isDragging && !isSorting && <DeleteBtn id={elementId} />}
+        {/*        <div onClick={() => console.log("drag")} className=" h-full   bg-background/70  w-[91%] absolute  left-0 text-foreground/60  " ><span className="animate-pulse absolute text-center left-0    w-full top-[40px] ">Click for properties or drag to move</span></div> */}
+
+        <div id={elementId} style={style} ref={setNodeRef} {...attributes} {...listeners} onClick={(e) => console.log("hello world")} className="w-[870px] relative" >{children}</div>
+    </div>
 }

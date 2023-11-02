@@ -13,13 +13,6 @@ export function CheckboxField({ id }: { id: string }) {
         </div>
 
 
-        {
-            hovering &&
-            <>
-                <DeleteBtn id={id} />
-                <div onClick={() => console.log("drag")} className=" h-full   bg-background/70  w-[91%] absolute  left-0 text-foreground/60  " ><span className="animate-pulse absolute text-center left-0    w-full top-[40px] ">Click for properties or drag to move</span></div>
-            </>
 
-        }
     </div>
 }
