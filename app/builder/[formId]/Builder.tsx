@@ -5,6 +5,7 @@ import Editor from "./Editor";
 import SideBar from "./SideBar";
 import { useContext } from "react";
 import { FormContext } from "@/context/FormContext";
+import { SettingsContextProvider } from "@/context/ElementSettingsContext";
 
 
 
@@ -21,7 +22,6 @@ export default function Builder() {
                 formContext.moveBuilderElement(over.id.toString(), active.id.toString())
 
             }
-            //TODO add if statement so those only work if i am holding non builder element
             if (!isSorting(active.id.toString())) {
                 formContext.addBuilderElement({ id: newElementId, elementName: droppedElementName })
             }
@@ -30,10 +30,14 @@ export default function Builder() {
     function isSorting(activeId: string) {
         return parseInt(activeId[activeId.length - 1]) >= 0
     }
+
+
     return <div className="flex max-w-[100vw]  overflow-hidden   ">
         <DndContext onDragEnd={handleDragEnd} autoScroll={false}  >
-            <Editor />
-            <SideBar />
+            <SettingsContextProvider>
+                <Editor />
+                <SideBar />
+            </SettingsContextProvider>
         </DndContext>
 
     </div>

@@ -10,11 +10,16 @@ import TextareaInput from "@/components/icons/TextareaInput";
 import DateInput from "@/components/icons/DateInput";
 import SelectInput from "@/components/icons/SelectInput";
 import CheckField from "@/components/icons/CheckFIeld";
+import { useContext } from "react";
+import { SettingsContext } from "@/context/ElementSettingsContext";
+import Settings from "./Settings";
 
 
 
 export default function SideBar() {
-    return <aside className=" max-w-[20%]  ml-auto  px-10 pt-5 h-fit overflow-hidden" >
+    const settingsContext = useContext(SettingsContext)
+    return <aside className=" relative max-w-[20%]  ml-auto  px-10 pt-5 h-fit overflow-hidden" >
+        {settingsContext.isOpen && <Settings />}
         <p className="text-foreground/70 border-b-[1px] py-1 ">Drag and drop elements</p>
 
         <p className="text-foreground/70  mt-3" >Layout elements</p>

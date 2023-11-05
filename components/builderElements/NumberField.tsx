@@ -1,8 +1,16 @@
 import { useState } from "react"
-import { DeleteIcon } from "../icons/Delete"
-import DeleteBtn from "../DeleteBtn"
 
-export default function NumberField({ id }: { id: string }) {
+type Props = {
+    id: string
+    isEditing?: boolean
+    label?: string
+    helperText?: string
+    placeholder?: string
+    required?: boolean
+    max?: number
+    min?: number
+}
+export default function NumberField(props: Props) {
     const [label, setLabel] = useState("")
     const [placeHolder, setPlaceHolder] = useState("")
     const [helperText, setHelperText] = useState("")

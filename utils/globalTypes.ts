@@ -29,4 +29,15 @@ export type FormElement = {
 export type BuilderElementType = {
     elementName: string
     id: string
-}
+    isEditing?: boolean
+    label?: string
+    helperText?: string
+    required?: boolean
+    placeHolder?: string
+    rows?: number
+    options?: string[]
+    text?: String
+    height?: number
+    max?: number
+    min?: number
+} 

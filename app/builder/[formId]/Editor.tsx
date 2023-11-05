@@ -6,6 +6,7 @@ import BuilderElement from "./BuilderElement";
 import { FormContext } from "@/context/FormContext";
 import { useContext } from "react";
 import { SortableContext } from "@dnd-kit/sortable";
+import { BuilderElementType } from "@/utils/globalTypes";
 
 
 export default function Editor() {
@@ -23,7 +24,7 @@ export default function Editor() {
             {formContext?.builderElements.length <= 0 && isOver && <div className="bg-muted h-[120px] w-full  rounded-md"></div>}
             {formContext?.builderElements.length <= 0 && !isOver && < p className=" justify-center pt-[30vh] mx-auto opacity-60  text-5xl text-center font-semibold text-muted-foreground">Drop here</p>}
             <SortableContext items={formContext.builderElements} >
-                {formContext?.builderElements.map((element, index) => <BuilderElement elementId={element.id} elementName={element.elementName} key={index} />)}
+                {formContext?.builderElements.map((element: BuilderElementType, index) => <BuilderElement key={index} {...element} />)}
             </SortableContext>
         </div>
     </div >

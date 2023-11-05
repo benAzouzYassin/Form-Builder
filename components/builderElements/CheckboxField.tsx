@@ -1,7 +1,13 @@
 import { useState } from "react"
 import DeleteBtn from "../DeleteBtn"
+type Props = {
+    id: string
+    isEditing?: boolean
+    label?: string
 
-export function CheckboxField({ id }: { id: string }) {
+}
+
+export function CheckboxField(props: Props) {
     const [label, setLabel] = useState("")
     const [helperText, setHelperText] = useState("")
     const [required, setRequired] = useState(false)

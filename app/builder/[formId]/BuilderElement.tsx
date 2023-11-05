@@ -9,45 +9,49 @@ import SubTitle from "@/components/builderElements/SubTitle";
 import TextField from "@/components/builderElements/TextField";
 import TextareaField from "@/components/builderElements/TextareaField";
 import Title from "@/components/builderElements/Title"
-import { FormElementName } from "@/utils/globalTypes";
+import { BuilderElementType, FormElementName } from "@/utils/globalTypes";
 import { CSS } from '@dnd-kit/utilities';
 import { useSortable } from '@dnd-kit/sortable';
 import DeleteBtn from "@/components/DeleteBtn";
-import { ReactElement, useState } from "react";
+import { ReactElement, useContext, useState } from "react";
+import { SettingsContext } from "@/context/ElementSettingsContext";
 
 // this will only get the element name and will put 
 type Props = {
     elementName: FormElementName
     elementId: string
+    isEditing: boolean
 }
 
 
-export default function BuilderElement(props: Props) {
+export default function BuilderElement(props: BuilderElementType) {
+
+    const settingsContext = useContext(SettingsContext)
 
 
     switch (props.elementName) {
         case "Title field":
-            return <SortableProvider elementId={props.elementId}><Title id={props.elementId} /></SortableProvider>
+            return <SortableProvider onClickCb={() => settingsContext.openSettings(props)} elementId={props.id}><Title {...props} /></SortableProvider>
         case "Sub title field":
-            return <SortableProvider elementId={props.elementId}><SubTitle id={props.elementId} /></SortableProvider>
+            return <SortableProvider onClickCb={() => settingsContext.openSettings(props)} elementId={props.id}><SubTitle {...props} /></SortableProvider>
         case "Paragraph field":
-            return <SortableProvider elementId={props.elementId}><Paragraph id={props.elementId} /></SortableProvider>
+            return <SortableProvider onClickCb={() => settingsContext.openSettings(props)} elementId={props.id}><Paragraph {...props} /></SortableProvider>
         case "Separator field":
-            return <SortableProvider elementId={props.elementId}><Separator id={props.elementId} /></SortableProvider>
+            return <SortableProvider onClickCb={() => settingsContext.openSettings(props)} elementId={props.id}><Separator {...props} /></SortableProvider>
         case "Spacer field":
-            return <SortableProvider elementId={props.elementId}><Spacer id={props.elementId} /></SortableProvider>
+            return <SortableProvider onClickCb={() => settingsContext.openSettings(props)} elementId={props.id}><Spacer {...props} /></SortableProvider>
         case "Text field":
-            return <SortableProvider elementId={props.elementId}><TextField id={props.elementId} /></SortableProvider>
+            return <SortableProvider onClickCb={() => settingsContext.openSettings(props)} elementId={props.id}><TextField {...props} /></SortableProvider>
         case "Textarea field":
-            return <SortableProvider elementId={props.elementId}><TextareaField id={props.elementId} /></SortableProvider>
+            return <SortableProvider onClickCb={() => settingsContext.openSettings(props)} elementId={props.id}><TextareaField {...props} /></SortableProvider>
         case "Number field":
-            return <SortableProvider elementId={props.elementId}><NumberField id={props.elementId} /></SortableProvider>
+            return <SortableProvider onClickCb={() => settingsContext.openSettings(props)} elementId={props.id}><NumberField {...props} /></SortableProvider>
         case "Date field":
-            return <SortableProvider elementId={props.elementId}><DateField id={props.elementId} /></SortableProvider>
+            return <SortableProvider onClickCb={() => settingsContext.openSettings(props)} elementId={props.id}><DateField {...props} /></SortableProvider>
         case "Select field":
-            return <SortableProvider elementId={props.elementId}><SelectField id={props.elementId} /></SortableProvider>
+            return <SortableProvider onClickCb={() => settingsContext.openSettings(props)} elementId={props.id}><SelectField {...props} /></SortableProvider>
         case "Checkbox field":
-            return <SortableProvider elementId={props.elementId}><CheckboxField id={props.elementId} /></SortableProvider>
+            return <SortableProvider onClickCb={() => settingsContext.openSettings(props)} elementId={props.id}><CheckboxField {...props} /></SortableProvider>
 
         default:
             break;
@@ -55,7 +59,7 @@ export default function BuilderElement(props: Props) {
 
     return <div>{props.elementName}</div>
 }
-function SortableProvider({ children, elementId }: { elementId: string, children: ReactElement }) {
+function SortableProvider({ children, elementId, onClickCb }: { onClickCb: () => void, elementId: string, children: ReactElement }) {
     const {
         attributes,
         listeners,
@@ -63,18 +67,22 @@ function SortableProvider({ children, elementId }: { elementId: string, children
         transform,
         transition,
         isDragging,
-        isSorting
+        isSorting,
+        node
     } = useSortable({ id: elementId });
     // @ts-ignore
     const style = {
         transform: CSS.Transform.toString(transform),
         transition,
     };
+    if (transform?.x == 0 && transform.y == 0 && isDragging) {
+        onClickCb()
+
+    }
     const [hovering, setHovering] = useState(false)
 
     return <div onMouseEnter={() => setHovering(true)} onMouseLeave={() => setHovering(false)} className="relative">
         {hovering && !isDragging && !isSorting && <DeleteBtn id={elementId} />}
-        {/*        <div onClick={() => console.log("drag")} className=" h-full   bg-background/70  w-[91%] absolute  left-0 text-foreground/60  " ><span className="animate-pulse absolute text-center left-0    w-full top-[40px] ">Click for properties or drag to move</span></div> */}
 
         <div id={elementId} style={style} ref={setNodeRef} {...attributes} {...listeners} onClick={(e) => console.log("hello world")} className="w-[870px] relative" >{children}</div>
     </div>

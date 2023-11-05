@@ -11,8 +11,8 @@ type ContextType = {
     removeElement: (id: string) => void
     addBuilderElement: (element: BuilderElementType) => void
     moveBuilderElement: (targetId: string, movingItemId: string) => void
-    //TODO remove the any type
     getPreviewElements: () => any
+    updateBuilderElement: (newElement: BuilderElementType) => void
 }
 
 
@@ -21,7 +21,8 @@ const INITIAL_CONTEXT: ContextType = {
     removeElement: () => { },
     addBuilderElement: () => { },
     moveBuilderElement: () => { },
-    getPreviewElements: () => { }
+    getPreviewElements: () => { },
+    updateBuilderElement: () => { }
 }
 
 export const FormContext = createContext<ContextType>(INITIAL_CONTEXT)
@@ -31,8 +32,59 @@ export function FormContextProvider({ children }: { children: ReactElement[] | R
     const [builderElements, setBuilderElements] = useState<BuilderElementType[]>([])
 
     const addBuilderElement = (element: BuilderElementType) => {
-        setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName }])
+        switch (element.elementName) {
+            case "Title field":
+                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, isEditing: false, text: "Your title" }])
+                break
+
+            case "Sub title field":
+                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, isEditing: false, text: "Your sub title" }])
+                break
+
+            case "Paragraph field":
+                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, isEditing: false, text: "Your paragraph" }])
+                break
+
+            case "Separator field":
+                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, isEditing: false, }])
+                break
+
+            case "Spacer field":
+                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, isEditing: false, height: 50 }])
+                break
+
+            case "Text field":
+                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, isEditing: false, label: "your label", helperText: "helper text", placeHolder: "Type here...", required: true }])
+                break
+            case "Textarea field":
+                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, isEditing: false, label: "your label", helperText: "helper text", rows: 10, placeHolder: "Type here...", required: true }])
+                break
+
+            case "Number field":
+                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, isEditing: false, min: 10, max: 50, label: "your label", helperText: "helper text", placeHolder: "Type here...", required: true }])
+
+                break
+            case "Date field":
+                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, isEditing: false, label: "your label", helperText: "helper text", placeHolder: "Type here...", required: true }])
+                break
+
+            case "Select field":
+                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, isEditing: false, options: ["option 1 ", "option 2"], label: "your label", helperText: "helper text", placeHolder: "Type here...", required: true }])
+                break
+
+            case "Checkbox field":
+                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, isEditing: false, label: "your label", }])
+                break
+
+            default:
+
+                break;
+        }
+
+        // setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, isEditing: false }])
     }
+
+
     const moveBuilderElement = (targetId: string, movingItemId: string) => {
         //case item is not moving
         setBuilderElements((items) => {
@@ -92,11 +144,20 @@ export function FormContextProvider({ children }: { children: ReactElement[] | R
     }
 
     const removeElement = (targetId: string) => {
-        console.log(targetId)
         setBuilderElements(builderElements.filter(element => element.id != targetId))
     }
 
-    return <FormContext.Provider value={{ getPreviewElements: getPreviewElements, moveBuilderElement: moveBuilderElement, builderElements: builderElements, addBuilderElement: addBuilderElement, removeElement: removeElement, }}>
+    const updateBuilderElement = (newElement: BuilderElementType) => {
+        console.log("updateBuilderElement triggered")
+        setBuilderElements(builderElements.map(elem => {
+            if (elem.id == newElement.id) {
+                return newElement
+            }
+            return elem
+        }))
+    }
+
+    return <FormContext.Provider value={{ updateBuilderElement: updateBuilderElement, getPreviewElements: getPreviewElements, moveBuilderElement: moveBuilderElement, builderElements: builderElements, addBuilderElement: addBuilderElement, removeElement: removeElement, }}>
         {children}
     </FormContext.Provider>
 }
