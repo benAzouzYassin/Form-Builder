@@ -84,6 +84,6 @@ function SortableProvider({ children, elementId, onClickCb }: { onClickCb: () =>
     return <div onMouseEnter={() => setHovering(true)} onMouseLeave={() => setHovering(false)} className="relative">
         {hovering && !isDragging && !isSorting && <DeleteBtn id={elementId} />}
 
-        <div id={elementId} style={style} ref={setNodeRef} {...attributes} {...listeners} onClick={(e) => console.log("hello world")} className="w-[870px] relative" >{children}</div>
+        <div id={elementId} style={style} ref={setNodeRef} {...attributes} {...listeners} className="w-[870px] relative" >{children}</div>
     </div>
 }

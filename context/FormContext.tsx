@@ -22,7 +22,7 @@ const INITIAL_CONTEXT: ContextType = {
     addBuilderElement: () => { },
     moveBuilderElement: () => { },
     getPreviewElements: () => { },
-    updateBuilderElement: () => { }
+    updateBuilderElement: () => { },
 }
 
 export const FormContext = createContext<ContextType>(INITIAL_CONTEXT)
@@ -54,26 +54,26 @@ export function FormContextProvider({ children }: { children: ReactElement[] | R
                 break
 
             case "Text field":
-                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, isEditing: false, label: "your label", helperText: "helper text", placeHolder: "Type here...", required: true }])
+                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, isEditing: false, label: "Text field : ", helperText: "", placeHolder: "Type here...", required: true }])
                 break
             case "Textarea field":
-                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, isEditing: false, label: "your label", helperText: "helper text", rows: 10, placeHolder: "Type here...", required: true }])
+                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, isEditing: false, label: "Textarea :", helperText: "", rows: 5, placeHolder: "Type here...", required: true }])
                 break
 
             case "Number field":
-                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, isEditing: false, min: 10, max: 50, label: "your label", helperText: "helper text", placeHolder: "Type here...", required: true }])
+                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, isEditing: false, min: 1, max: 999, label: "Number field :", helperText: "", placeHolder: "Type here...", required: true }])
 
                 break
             case "Date field":
-                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, isEditing: false, label: "your label", helperText: "helper text", placeHolder: "Type here...", required: true }])
+                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, isEditing: false, label: "Date :", helperText: "", placeHolder: "Type here...", required: true }])
                 break
 
             case "Select field":
-                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, isEditing: false, options: ["option 1 ", "option 2"], label: "your label", helperText: "helper text", placeHolder: "Type here...", required: true }])
+                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, isEditing: false, label: "Select an option :", helperText: "", placeHolder: "Type here...", options: [], required: true }])
                 break
 
             case "Checkbox field":
-                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, isEditing: false, label: "your label", }])
+                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, isEditing: false, label: "Ask a question !", }])
                 break
 
             default:
@@ -95,41 +95,41 @@ export function FormContextProvider({ children }: { children: ReactElement[] | R
     }
 
 
-    const addPreviewElement = (elementName: string) => {
-        const elementId = elementName + builderElements.length.toString()
-        switch (elementName) {
+    const addPreviewElement = (element: BuilderElementType) => {
+        const elementId = element.elementName + builderElements.length.toString()
+        switch (element.elementName) {
             case "Title field":
-                return { id: elementId, element: "Title field", text: "Title" }
+                return { id: elementId, element: "Title field", text: element.text }
 
             case "Sub title field":
-                return { id: elementId, element: "Sub title field", text: "Sub title" }
+                return { id: elementId, element: "Sub title field", text: element.text }
 
             case "Paragraph field":
-                return { id: elementId, element: "Paragraph field", text: "Paragraph" }
+                return { id: elementId, element: "Paragraph field", text: element.text }
 
             case "Separator field":
                 return { id: elementId, element: "Separator field" }
 
             case "Spacer field":
-                return { id: elementId, element: "Spacer field", height: 50 }
+                return { id: elementId, element: "Spacer field", height: element.height }
 
             case "Text field":
-                return { id: elementId, element: "Text field", required: true, label: "Text field", placeHolder: "Type here..." }
+                return { id: elementId, element: "Text field", required: element.required, label: element.label, placeHolder: element.placeHolder, helperText: element.helperText }
 
             case "Textarea field":
-                return { id: elementId, element: "Textarea field", required: false, label: "Textarea field", placeHolder: "Type here...", rows: 2 }
+                return { id: elementId, element: "Textarea field", required: element.required, label: element.label, placeHolder: element.placeHolder, rows: element.rows, helperText: element.helperText }
 
             case "Number field":
-                return { id: elementId, element: "Number field", required: false, label: "Number field", placeHolder: "0", max: 99, min: 5 }
+                return { id: elementId, element: "Number field", required: element.required, label: element.label, placeHolder: element.placeHolder, max: element.max, min: element.min, helperText: element.helperText }
 
             case "Date field":
-                return { id: elementId, element: "Date field", required: false }
+                return { id: elementId, element: "Date field", required: element.required, label: element.label, placeHolder: element.placeHolder, helperText: element.helperText }
 
             case "Select field":
-                return { id: elementId, element: "Select field", options: ["option one ", "option 2"], label: "option" }
+                return { id: elementId, element: "Select field", placeHolder: element.placeHolder, options: element.options, label: element.label, helperText: element.helperText }
 
             case "Checkbox field":
-                return { id: elementId, element: "Checkbox field", label: "Do you agree ?" }
+                return { id: elementId, element: "Checkbox field", label: element.label }
 
             default:
                 return;
@@ -140,7 +140,7 @@ export function FormContextProvider({ children }: { children: ReactElement[] | R
 
 
     function getPreviewElements() {
-        return builderElements.map(elem => addPreviewElement(elem.elementName))
+        return builderElements.map(elem => addPreviewElement(elem))
     }
 
     const removeElement = (targetId: string) => {
@@ -148,7 +148,9 @@ export function FormContextProvider({ children }: { children: ReactElement[] | R
     }
 
     const updateBuilderElement = (newElement: BuilderElementType) => {
+
         console.log("updateBuilderElement triggered")
+
         setBuilderElements(builderElements.map(elem => {
             if (elem.id == newElement.id) {
                 return newElement

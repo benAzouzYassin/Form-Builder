@@ -18,7 +18,7 @@ export default function PreviewDateField(props: Props) {
         <Popover>
             <PopoverTrigger asChild>
                 <Button
-                    onClick={() => console.log("aaa")}
+                    onClick={() => console.log("")}
                     variant={"outline"}
                     className={cn(
                         "w-full z-50 justify-start text-left font-normal",
@@ -26,7 +26,7 @@ export default function PreviewDateField(props: Props) {
                     )}
                 >
                     <CalendarIcon className="mr-2 h-4 w-4" />
-                    {date ? format(date, "PPP") : <span>Pick a date</span>}
+                    {date ? format(date, "PPP") : <span>{props.placeHolder}</span>}
                 </Button>
             </PopoverTrigger>
             <PopoverContent className="w-auto p-0">
@@ -38,6 +38,6 @@ export default function PreviewDateField(props: Props) {
                 />
             </PopoverContent>
         </Popover>
-        <p className="ml-3 text-sm mt-1 text-foreground/70">{props.helperText}helper text</p>
+        <p className="ml-3 text-sm mt-1 text-foreground/70">{props.helperText}</p>
     </div>
 }

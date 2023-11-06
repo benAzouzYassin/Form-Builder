@@ -16,6 +16,6 @@ export default function PreviewSelect(props: Props) {
                 </SelectGroup>
             </SelectContent>
         </Select>
-        <p className="ml-3 text-sm mt-1 text-foreground/70">{props.helperText}helper text</p>
+        <p className="ml-3 text-sm mt-1 text-foreground/70">{props.helperText}</p>
     </div>
 }
