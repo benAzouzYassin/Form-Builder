@@ -14,15 +14,12 @@ type Props = {
 
 export function TopBar(props: Props) {
 
-
-
-
     const formCtx = useContext(FormContext)
 
     return <div className="  bg-background mb-1  gap-5 h-[8vh] w-full border-b-2 px-20 shadow-background shadow-sm flex items-center">
         <p><span className="text-xl font-semibold opacity-90">Form</span> : {props.name}</p>
         <button onClick={() => props.startPreview()} className="hover:bg-muted  rounded-md py-2 px-4 border-2  ml-auto flex  items-center"><Preview className="" /> Preview</button>
-        <button className="hover:bg-muted flex  items-center  rounded-md py-2 px-5 border-2"><Save className="" /> Save</button>
+        <button onClick={() => console.log(JSON.stringify(formCtx.builderElements))} className="hover:bg-muted flex  items-center  rounded-md py-2 px-5 border-2"><Save className="" /> Save</button>
         <button className="flex  items-center  rounded-md py-2 px-5 border-2  bg-gradient-to-r from-[#7C90F8] to-[#2ACDEF] hover:from-[#5768c0] hover:to-[#29a9c3]  "><Publish className="" /> Publish</button>
     </div>
 }

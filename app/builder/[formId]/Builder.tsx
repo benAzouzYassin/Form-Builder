@@ -14,7 +14,7 @@ export default function Builder() {
     const formContext = useContext(FormContext)
 
     const handleDragEnd = (event: DragEndEvent) => {
-        const { over, active, collisions } = event;
+        const { over, active, } = event;
         if (over) {
             const droppedElementName = active.id.toString()
             const newElementId = droppedElementName + formContext.builderElements.length.toString()

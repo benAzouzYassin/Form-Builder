@@ -18,8 +18,11 @@ import Settings from "./Settings";
 
 export default function SideBar() {
     const settingsContext = useContext(SettingsContext)
-    return <aside className=" relative max-w-[20%]  ml-auto px-8  pt-5 h-fit overflow-hidden" >
+    return <aside style={{ position: settingsContext.isOpen ? "relative" : "static" }} className=" max-w-[20%]  ml-auto px-8  pt-5 h-fit overflow-hidden" >
+
+
         {settingsContext.isOpen && <Settings />}
+
         <p className="text-foreground/70 border-b-[1px] py-1 ">Drag and drop elements</p>
 
         <p className="text-foreground/70  mt-3" >Layout elements</p>

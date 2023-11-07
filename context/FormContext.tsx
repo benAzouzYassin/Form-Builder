@@ -1,8 +1,8 @@
 "use client"
 
-import { BuilderElementType, FormElement, FormElementName } from "@/utils/globalTypes"
+import { BuilderElementType } from "@/utils/globalTypes"
 import { arrayMove } from "@dnd-kit/sortable"
-import { ReactElement, createContext, useEffect, useState } from "react"
+import { ReactElement, createContext, useState } from "react"
 
 
 
@@ -34,46 +34,46 @@ export function FormContextProvider({ children }: { children: ReactElement[] | R
     const addBuilderElement = (element: BuilderElementType) => {
         switch (element.elementName) {
             case "Title field":
-                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, isEditing: false, text: "Your title" }])
+                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, text: "Your title" }])
                 break
 
             case "Sub title field":
-                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, isEditing: false, text: "Your sub title" }])
+                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, text: "Your sub title" }])
                 break
 
             case "Paragraph field":
-                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, isEditing: false, text: "Your paragraph" }])
+                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, text: "Your paragraph" }])
                 break
 
             case "Separator field":
-                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, isEditing: false, }])
+                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, }])
                 break
 
             case "Spacer field":
-                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, isEditing: false, height: 50 }])
+                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, height: 50 }])
                 break
 
             case "Text field":
-                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, isEditing: false, label: "Text field : ", helperText: "", placeHolder: "Type here...", required: true }])
+                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, label: "Text field : ", helperText: "", placeHolder: "Type here...", required: true }])
                 break
             case "Textarea field":
-                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, isEditing: false, label: "Textarea :", helperText: "", rows: 5, placeHolder: "Type here...", required: true }])
+                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, label: "Textarea :", helperText: "", rows: 5, placeHolder: "Type here...", required: true }])
                 break
 
             case "Number field":
-                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, isEditing: false, min: 1, max: 999, label: "Number field :", helperText: "", placeHolder: "Type here...", required: true }])
+                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, min: 1, max: 999, label: "Number field :", helperText: "", placeHolder: "Type here...", required: true }])
 
                 break
             case "Date field":
-                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, isEditing: false, label: "Date :", helperText: "", placeHolder: "Type here...", required: true }])
+                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, label: "Date :", helperText: "", placeHolder: "Type here...", required: true }])
                 break
 
             case "Select field":
-                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, isEditing: false, label: "Select an option :", helperText: "", placeHolder: "Type here...", options: [], required: true }])
+                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, label: "Select an option :", helperText: "", placeHolder: "Type here...", options: [], required: true }])
                 break
 
             case "Checkbox field":
-                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, isEditing: false, label: "Ask a question !", }])
+                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, label: "Ask a question !", }])
                 break
 
             default:
@@ -81,7 +81,7 @@ export function FormContextProvider({ children }: { children: ReactElement[] | R
                 break;
         }
 
-        // setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, isEditing: false }])
+        // setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName }])
     }
 
 

@@ -17,11 +17,6 @@ import { ReactElement, useContext, useState } from "react";
 import { SettingsContext } from "@/context/ElementSettingsContext";
 
 // this will only get the element name and will put 
-type Props = {
-    elementName: FormElementName
-    elementId: string
-    isEditing: boolean
-}
 
 
 export default function BuilderElement(props: BuilderElementType) {

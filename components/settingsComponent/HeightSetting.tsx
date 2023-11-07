@@ -8,6 +8,7 @@ export default function HeightSetting({ onChangeCb, }: { onChangeCb: (newValue: 
 
     return <div>
         <label>Spacer height :</label>
-        <Slider onPointerUpCapture={(e) => onChangeCb(e.target.ariaValueNow)} defaultValue={[currentSettings.height ?? 30]} max={100} min={10} step={1} className="w-[90%] mt-5 " />
+        {/**@ts-ignore */}
+        <Slider cb={(val) => onChangeCb(val)} defaultValue={[currentSettings.height ?? 30]} max={100} min={10} step={1} className="w-[90%] mt-5 " />
     </div>
 }

@@ -1,10 +1,9 @@
 "use client"
 
 import { useState } from "react"
-import DeleteBtn from "../DeleteBtn"
 
 
-export default function SubTitle({ id, text }: { text?: string, id: string, isEditing?: false }) {
+export default function SubTitle({ id, text }: { text?: string, id: string }) {
     const [hovering, setHovering] = useState(false)
 
     return <div className="relative h-[100px]">
