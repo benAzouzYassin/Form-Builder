@@ -10,6 +10,7 @@ import Preview from "./Preview"
 
 export default function Page({ params }: { params: { formId: string } }) {
 
+    console.log(params)
     const [previewMode, setPreviewMode] = useState(false)
 
     useEffect(() => previewMode ? hideNav() : showNav(), [previewMode])
@@ -55,8 +56,8 @@ export default function Page({ params }: { params: { formId: string } }) {
     return <main style={{ overflowY: previewMode ? "hidden" : "visible" }} className=" relative overflow-y-visible  ease-out transition-all overflow-hidden border-2 max-w-[100vw] "  >
         <FormContextProvider>
             <div className={contentClass}>
-                <TopBar startPreview={startPreview} name={example.name} />
-                <Builder />
+                <TopBar formId={params.formId} startPreview={startPreview} name={example.name} />
+                <Builder formId={params.formId} />
             </div>
             <Preview closePreviewMode={closePreviewMode} className={previewDynamicClass} theme={theme} />
         </FormContextProvider>

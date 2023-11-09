@@ -2,7 +2,6 @@ import { BuilderElementType } from "@/utils/globalTypes";
 import { ReactElement, createContext, useState } from "react";
 
 
-//TODO remove ant accurence for isEditing cuz it is useless
 
 type ContextType = {
     isOpen: boolean

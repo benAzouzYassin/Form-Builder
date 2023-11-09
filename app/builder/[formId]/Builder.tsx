@@ -3,15 +3,20 @@
 import { DndContext, DragEndEvent } from "@dnd-kit/core";
 import Editor from "./Editor";
 import SideBar from "./SideBar";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { FormContext } from "@/context/FormContext";
 import { SettingsContextProvider } from "@/context/ElementSettingsContext";
 
 
 
-export default function Builder() {
-
+export default function Builder({ formId }: { formId: string }) {
     const formContext = useContext(FormContext)
+
+    useEffect(() => {
+        formContext.loadBuilderElements(formId)
+    }, [])
+
+
 
     const handleDragEnd = (event: DragEndEvent) => {
         const { over, active, } = event;

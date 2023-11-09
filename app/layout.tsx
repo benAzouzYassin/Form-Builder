@@ -4,7 +4,7 @@ import './globals.css'
 import { ClerkProvider, UserButton } from '@clerk/nextjs'
 import { ThemeProvider } from '@/components/providers/ThemeProvider'
 import ThemeSwitcher from '@/components/ThemeSwitcher'
-import Image from 'next/image'
+import Link from 'next/link'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,12 +20,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={inter.className} >
         <ClerkProvider >
           <ThemeProvider>
 
             <nav className='flex  w-full bg-background  shadow-md shadow-muted h-[8vh] overflow-hidden px-14'>
-              <img className='w-64  mt-1 ml-3' src="/logo.svg" alt="Form Builder logo" />
+              <Link href="/" className='mt-2'>
+                <img className='w-64  mt-1 ml-3' src="/logo.svg" alt="Form Builder logo" />
+              </Link>
               <ThemeSwitcher />
               <div className='h-fit my-auto ml-[-10px] scale-125 pr-5 hover:scale-[135%] transition-transform '>
                 <UserButton afterSignOutUrl='/signin' />

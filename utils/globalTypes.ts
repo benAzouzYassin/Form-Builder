@@ -39,4 +39,10 @@ export type BuilderElementType = {
     height?: number
     max?: number
     min?: number
-} 
+}
+export type SavedFormsType = {
+    formId: string
+    formName: string
+    formDesc: string
+    data: BuilderElementType[]
+}

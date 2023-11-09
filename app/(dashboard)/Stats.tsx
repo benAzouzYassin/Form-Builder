@@ -1,9 +1,8 @@
-import { currentUser } from "@clerk/nextjs"
+
 import StatsCard from "./StatsCard"
 
 
 export default async function Stats() {
-    const user = await currentUser()
     return <div className="flex gap-5">
         <StatsCard icon="visits.svg" title="Total visits" description="All time form visits" color="#2563EB" statistic="5" />
         <StatsCard icon="submissions.svg" title="Total submissions" description="All time form submissions" color=" rgb(251 146 60)" statistic="1" />

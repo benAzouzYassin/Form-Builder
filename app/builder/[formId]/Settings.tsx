@@ -22,7 +22,6 @@ export default function Settings() {
 
     const formContext = useContext(FormContext)
     const renderSettingsComponent = (settingName: string) => {
-        //TODO repeat the label thing and make it using formContext.update
         switch (settingName) {
             case "label":
                 return <LabelSetting onChangeCb={(newValue) => formContext.updateBuilderElement({ ...settingsContext.currentSettings, label: newValue })} />

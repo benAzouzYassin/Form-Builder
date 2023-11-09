@@ -1,6 +1,7 @@
 "use client"
 
-import { BuilderElementType } from "@/utils/globalTypes"
+import { saveUser } from "@/actions/userActions"
+import { BuilderElementType, SavedFormsType } from "@/utils/globalTypes"
 import { arrayMove } from "@dnd-kit/sortable"
 import { ReactElement, createContext, useState } from "react"
 
@@ -13,6 +14,8 @@ type ContextType = {
     moveBuilderElement: (targetId: string, movingItemId: string) => void
     getPreviewElements: () => any
     updateBuilderElement: (newElement: BuilderElementType) => void
+    saveElements: (formId: string, formName: string, formDesc: string) => void
+    loadBuilderElements: (formId: string) => void
 }
 
 
@@ -23,6 +26,8 @@ const INITIAL_CONTEXT: ContextType = {
     moveBuilderElement: () => { },
     getPreviewElements: () => { },
     updateBuilderElement: () => { },
+    saveElements: () => { },
+    loadBuilderElements: () => { }
 }
 
 export const FormContext = createContext<ContextType>(INITIAL_CONTEXT)
@@ -149,8 +154,6 @@ export function FormContextProvider({ children }: { children: ReactElement[] | R
 
     const updateBuilderElement = (newElement: BuilderElementType) => {
 
-        console.log("updateBuilderElement triggered")
-
         setBuilderElements(builderElements.map(elem => {
             if (elem.id == newElement.id) {
                 return newElement
@@ -159,7 +162,38 @@ export function FormContextProvider({ children }: { children: ReactElement[] | R
         }))
     }
 
-    return <FormContext.Provider value={{ updateBuilderElement: updateBuilderElement, getPreviewElements: getPreviewElements, moveBuilderElement: moveBuilderElement, builderElements: builderElements, addBuilderElement: addBuilderElement, removeElement: removeElement, }}>
+    const loadBuilderElements = (formId: string) => {
+        const saved: SavedFormsType[] = JSON.parse(localStorage.getItem("forms") ?? "[]")
+        saved.forEach(elem => {
+            if (elem.formId === formId) {
+                setBuilderElements(elem.data)
+            }
+        })
+
+    }
+
+    const saveElements = (formId: string, formName: string, formDesc: string) => {
+        const oldForms = JSON.parse(localStorage.getItem("forms") ?? "[]")
+        const newData: SavedFormsType = { formId: formId, formName: formName, formDesc: formDesc, data: builderElements }
+        let savedBefore = false
+        for (let i = 0; i < oldForms.length; i++) {
+
+            if (oldForms[i]["formId"] === formId) {
+                console.log("found it !!")
+                oldForms[i] = newData
+                localStorage.setItem("forms", JSON.stringify(oldForms))
+                savedBefore = true
+                break
+            }
+        }
+        if (!savedBefore) {
+
+            localStorage.setItem("forms", JSON.stringify([...oldForms, newData]))
+            console.log([...oldForms, newData])
+        }
+
+    }
+    return <FormContext.Provider value={{ loadBuilderElements: loadBuilderElements, saveElements: saveElements, updateBuilderElement: updateBuilderElement, getPreviewElements: getPreviewElements, moveBuilderElement: moveBuilderElement, builderElements: builderElements, addBuilderElement: addBuilderElement, removeElement: removeElement, }}>
         {children}
     </FormContext.Provider>
 }
