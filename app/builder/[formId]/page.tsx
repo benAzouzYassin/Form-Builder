@@ -10,7 +10,6 @@ import Preview from "./Preview"
 
 export default function Page({ params }: { params: { formId: string } }) {
 
-    console.log(params)
     const [previewMode, setPreviewMode] = useState(false)
 
     useEffect(() => previewMode ? hideNav() : showNav(), [previewMode])

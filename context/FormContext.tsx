@@ -1,6 +1,6 @@
 "use client"
 
-import { saveUser } from "@/actions/userActions"
+import { publishFormAction } from "@/actions/formActions"
 import { BuilderElementType, SavedFormsType } from "@/utils/globalTypes"
 import { arrayMove } from "@dnd-kit/sortable"
 import { ReactElement, createContext, useState } from "react"
@@ -16,6 +16,7 @@ type ContextType = {
     updateBuilderElement: (newElement: BuilderElementType) => void
     saveElements: (formId: string, formName: string, formDesc: string) => void
     loadBuilderElements: (formId: string) => void
+    publishForm: (formId: string, formName: string, formDesc: string, cb: () => void) => void
 }
 
 
@@ -27,7 +28,8 @@ const INITIAL_CONTEXT: ContextType = {
     getPreviewElements: () => { },
     updateBuilderElement: () => { },
     saveElements: () => { },
-    loadBuilderElements: () => { }
+    loadBuilderElements: () => { },
+    publishForm: () => { }
 }
 
 export const FormContext = createContext<ContextType>(INITIAL_CONTEXT)
@@ -172,6 +174,21 @@ export function FormContextProvider({ children }: { children: ReactElement[] | R
 
     }
 
+    const publishForm = (formId: string, formName: string, formDesc: string, cb: () => void) => {
+
+        publishFormAction(formName, formDesc, JSON.stringify(builderElements))
+            .then(res => {
+                if (res && res.success) {
+                    const savedForms = JSON.parse(localStorage.getItem("forms") ?? "[]")
+                    const newForms = savedForms.filter((form: SavedFormsType) => form.formId != formId)
+                    localStorage.setItem("forms", JSON.stringify(newForms))
+                    cb()
+                }
+            })
+            .catch(err => console.log(err))
+
+    }
+
     const saveElements = (formId: string, formName: string, formDesc: string) => {
         const oldForms = JSON.parse(localStorage.getItem("forms") ?? "[]")
         const newData: SavedFormsType = { formId: formId, formName: formName, formDesc: formDesc, data: builderElements }
@@ -193,7 +210,7 @@ export function FormContextProvider({ children }: { children: ReactElement[] | R
         }
 
     }
-    return <FormContext.Provider value={{ loadBuilderElements: loadBuilderElements, saveElements: saveElements, updateBuilderElement: updateBuilderElement, getPreviewElements: getPreviewElements, moveBuilderElement: moveBuilderElement, builderElements: builderElements, addBuilderElement: addBuilderElement, removeElement: removeElement, }}>
+    return <FormContext.Provider value={{ publishForm: publishForm, loadBuilderElements: loadBuilderElements, saveElements: saveElements, updateBuilderElement: updateBuilderElement, getPreviewElements: getPreviewElements, moveBuilderElement: moveBuilderElement, builderElements: builderElements, addBuilderElement: addBuilderElement, removeElement: removeElement, }}>
         {children}
     </FormContext.Provider>
 }

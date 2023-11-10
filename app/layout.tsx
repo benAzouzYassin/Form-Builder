@@ -24,7 +24,7 @@ export default function RootLayout({
         <ClerkProvider >
           <ThemeProvider>
 
-            <nav className='flex  w-full bg-background  shadow-md shadow-muted h-[8vh] overflow-hidden px-14'>
+            <nav className='flex  w-full bg-background  shadow-sm shadow-muted h-[8vh] overflow-hidden px-14'>
               <Link href="/" className='mt-2'>
                 <img className='w-64  mt-1 ml-3' src="/logo.svg" alt="Form Builder logo" />
               </Link>
