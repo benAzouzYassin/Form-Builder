@@ -26,7 +26,7 @@ export function TopBar(props: Props) {
     const router = useRouter()
 
     const publishingCb = () => {
-        router.push(`/published/${props.formId}?formName=${formName}&formDesc=${formDesc}`)
+        router.push(`/forms/${props.formId}`)
     }
 
     const handlePublishBtn = () => {

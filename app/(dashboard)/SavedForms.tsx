@@ -8,7 +8,6 @@ export default function SavedForms() {
     const [savedForms, setSavedForms] = useState<SavedFormsType[]>([])
     useEffect(() => {
         const localData = JSON.parse(localStorage.getItem("forms") ?? "[]")
-        console.log(localData)
         setSavedForms(localData)
     }, [])
     return <>

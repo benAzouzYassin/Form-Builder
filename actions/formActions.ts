@@ -30,3 +30,12 @@ export async function publishFormAction(formName: string, formDesc: string, form
         return { success: false, message: error?.message ?? "" }
     }
 }
+
+export default async function getPublishedForms() {
+    try {
+        const forms = await prisma.form.findMany()
+        return { success: true, data: forms }
+    } catch (error: any) {
+        return { success: false, message: error.message }
+    }
+}
