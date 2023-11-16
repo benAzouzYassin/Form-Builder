@@ -23,30 +23,30 @@ export default function BuilderElement(props: BuilderElementType) {
 
     const settingsContext = useContext(SettingsContext)
 
-
+    const openSettings = () => settingsContext.openSettings(props)
     switch (props.elementName) {
         case "Title field":
-            return <SortableProvider onClickCb={() => settingsContext.openSettings(props)} elementId={props.id}><Title {...props} /></SortableProvider>
+            return <SortableProvider onClickCb={openSettings} elementId={props.id}><Title {...props} /></SortableProvider>
         case "Sub title field":
-            return <SortableProvider onClickCb={() => settingsContext.openSettings(props)} elementId={props.id}><SubTitle {...props} /></SortableProvider>
+            return <SortableProvider onClickCb={openSettings} elementId={props.id}><SubTitle {...props} /></SortableProvider>
         case "Paragraph field":
-            return <SortableProvider onClickCb={() => settingsContext.openSettings(props)} elementId={props.id}><Paragraph {...props} /></SortableProvider>
+            return <SortableProvider onClickCb={openSettings} elementId={props.id}><Paragraph {...props} /></SortableProvider>
         case "Separator field":
-            return <SortableProvider onClickCb={() => settingsContext.openSettings(props)} elementId={props.id}><Separator {...props} /></SortableProvider>
+            return <SortableProvider onClickCb={openSettings} elementId={props.id}><Separator {...props} /></SortableProvider>
         case "Spacer field":
-            return <SortableProvider onClickCb={() => settingsContext.openSettings(props)} elementId={props.id}><Spacer {...props} /></SortableProvider>
+            return <SortableProvider onClickCb={openSettings} elementId={props.id}><Spacer {...props} /></SortableProvider>
         case "Text field":
-            return <SortableProvider onClickCb={() => settingsContext.openSettings(props)} elementId={props.id}><TextField {...props} /></SortableProvider>
+            return <SortableProvider onClickCb={openSettings} elementId={props.id}><TextField {...props} /></SortableProvider>
         case "Textarea field":
-            return <SortableProvider onClickCb={() => settingsContext.openSettings(props)} elementId={props.id}><TextareaField {...props} /></SortableProvider>
+            return <SortableProvider onClickCb={openSettings} elementId={props.id}><TextareaField {...props} /></SortableProvider>
         case "Number field":
-            return <SortableProvider onClickCb={() => settingsContext.openSettings(props)} elementId={props.id}><NumberField {...props} /></SortableProvider>
+            return <SortableProvider onClickCb={openSettings} elementId={props.id}><NumberField {...props} /></SortableProvider>
         case "Date field":
-            return <SortableProvider onClickCb={() => settingsContext.openSettings(props)} elementId={props.id}><DateField {...props} /></SortableProvider>
+            return <SortableProvider onClickCb={openSettings} elementId={props.id}><DateField {...props} /></SortableProvider>
         case "Select field":
-            return <SortableProvider onClickCb={() => settingsContext.openSettings(props)} elementId={props.id}><SelectField {...props} /></SortableProvider>
+            return <SortableProvider onClickCb={openSettings} elementId={props.id}><SelectField {...props} /></SortableProvider>
         case "Checkbox field":
-            return <SortableProvider onClickCb={() => settingsContext.openSettings(props)} elementId={props.id}><CheckboxField {...props} /></SortableProvider>
+            return <SortableProvider onClickCb={openSettings} elementId={props.id}><CheckboxField {...props} /></SortableProvider>
 
         default:
             break;

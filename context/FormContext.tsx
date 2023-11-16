@@ -72,11 +72,11 @@ export function FormContextProvider({ children }: { children: ReactElement[] | R
 
                 break
             case "Date field":
-                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, label: "Date :", helperText: "", placeHolder: "Type here...", required: true }])
+                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, label: "Date :", helperText: "", placeHolder: "Select a date...", required: true }])
                 break
 
             case "Select field":
-                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, label: "Select an option :", helperText: "", placeHolder: "Type here...", options: [], required: true }])
+                setBuilderElements([...builderElements, { id: element.id, elementName: element.elementName, label: "Select an option :", helperText: "", placeHolder: "Select an option...", options: [], required: true }])
                 break
 
             case "Checkbox field":

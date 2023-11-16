@@ -18,6 +18,8 @@ type Props = {
 }
 
 export default function FormDraft(props: Props) {
+
+
     const router = useRouter()
     const viewFormSubmissions = () => {
         router.push(`submissions/${props.id}`)

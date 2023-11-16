@@ -6,12 +6,12 @@ type Props = {} & FormElement
 export default function PreviewSelect(props: Props) {
     return <div className="flex flex-col mt-1">
         <label htmlFor={props.id} className=" mb-1 ml-2 text-md"> {props.label}</label>
-        <Select required={props.required}>
+        <Select name={props.label ?? props.placeHolder} required={props.required}>
             <SelectTrigger className="w-full z-50">
                 <SelectValue placeholder={props.placeHolder} />
             </SelectTrigger>
             <SelectContent>
-                <SelectGroup>
+                <SelectGroup >
                     {props.options?.map((option, index) => <SelectItem key={index} value={option}>{option}</SelectItem>)}
                 </SelectGroup>
             </SelectContent>

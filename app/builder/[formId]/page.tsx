@@ -6,6 +6,7 @@ import { FormContextProvider } from "@/context/FormContext"
 import { useEffect, useState } from "react"
 import { useTheme } from "next-themes"
 import Preview from "./Preview"
+import Nav from "@/components/Nav"
 
 
 export default function Page({ params }: { params: { formId: string } }) {
@@ -52,14 +53,16 @@ export default function Page({ params }: { params: { formId: string } }) {
         }
     }
 
-    return <main style={{ overflowY: previewMode ? "hidden" : "visible" }} className=" relative overflow-y-visible  ease-out transition-all overflow-hidden border-2 max-w-[100vw] "  >
-        <FormContextProvider>
-            <div className={contentClass}>
-                <TopBar formId={params.formId} startPreview={startPreview} name={example.name} />
-                <Builder formId={params.formId} />
-            </div>
-            <Preview closePreviewMode={closePreviewMode} className={previewDynamicClass} theme={theme} />
-        </FormContextProvider>
-
-    </main>
+    return <div>
+        <Nav />
+        <main style={{ overflowY: previewMode ? "hidden" : "visible" }} className=" relative overflow-y-visible  ease-out transition-all overflow-hidden border-2 max-w-[100vw] "  >
+            <FormContextProvider>
+                <div className={contentClass}>
+                    <TopBar formId={params.formId} startPreview={startPreview} name={example.name} />
+                    <Builder formId={params.formId} />
+                </div>
+                <Preview closePreviewMode={closePreviewMode} className={previewDynamicClass} theme={theme} />
+            </FormContextProvider>
+        </main>
+    </div>
 }
