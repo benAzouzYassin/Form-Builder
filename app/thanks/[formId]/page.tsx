@@ -1,6 +1,6 @@
 "use client"
 
-import CopyBtn from "@/app/published/[formId]/CopyBtn";
+import CopyBtn from "@/app/(authRequired)/published/[formId]/CopyBtn";
 import ThemeSwitcher from "@/components/ThemeSwitcher";
 import { useEffect } from "react";
 //@ts-ignore

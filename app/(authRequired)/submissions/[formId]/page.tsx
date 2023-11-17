@@ -1,11 +1,10 @@
-import { getFormById } from "@/actions/formActions";
-import StatsCard from "@/app/(dashboard)/StatsCard";
+import { getFormById, getFormLabels, getFormSubmissions } from "@/actions/formActions";
+import StatsCard from "@/app/(authRequired)/(dashboard)/StatsCard";
 import Nav from "@/components/Nav";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 export default async function Page({ params }: { params: { formId: string } }) {
-    //TODO test what happent when there is a lot of labels
     const form = await getFormById(params.formId)
     const calcSubRate = (views: number | undefined, subCount: number | undefined) => {
         if (views && subCount) {
@@ -19,9 +18,12 @@ export default async function Page({ params }: { params: { formId: string } }) {
         }
         return "0%"
     }
+    const submissions = await getFormSubmissions(params.formId)
 
-    const labels = ["name", "age", "choice"]
-    const answers = [["yassine", 20, "yes"], ["houssem", 19, "yes"], ["houssem", 19, "yes"], ["houssem", 19, "yes"], ["houssem", 19, "yes"], ["yahia", 20, "no"], ["rayen", 19, "no"]]
+    const labels = await getFormLabels(params.formId)
+    const answers = extractAnswers(submissions.data, labels)
+
+
     let widthPercent = ""
     if (labels.length > 0) {
 
@@ -49,12 +51,35 @@ export default async function Page({ params }: { params: { formId: string } }) {
                 <p className="text-3xl font-bold  mt-10">Submissions</p>
                 <div className="w-full  mt-5">
                     <div className=" border-b-[1px] bg-accent/30  flex  gap-2 w-full pl-4 h-10 rounded-t-md items-center text-foreground/80 text-lg font-normal">
-                        {labels.map((label, index) => <span style={{ width: widthPercent }} className="" key={index}>{label}</span>)}
+                        {labels.map((label, index) => <span style={{ width: widthPercent }} className="text-sm" key={index}>{label.replace(":", "").trim()}</span>)}
                     </div>
+
                     {answers.map((data, index) => <div className="hover:bg-accent/10 hover:cursor-pointer flex pl-4 border-b-[1px] h-10 items-center text-sm text-foreground/60 font-semibold gap-3 w-full" key={index}>{data.map((answer, index) => <span style={{ width: widthPercent }} key={index}>{answer}</span>)}</div>)}
                 </div>
             </div>
         </div>
     </div>
 
+}
+
+function extractAnswers(submissions: any[] | undefined, labels: string[]) {
+    if (!submissions) {
+        return []
+    }
+    const answers = [];
+
+    for (let i = 0; i < submissions.length; i++) {
+        const currentObj = submissions[i];
+        const currentAnswer = [];
+
+        for (const label of labels) {
+            if (currentObj[label]) {
+                currentAnswer.push(currentObj[label]);
+            } else {
+                currentAnswer.push("");
+            }
+        }
+        answers.push(currentAnswer);
+    }
+    return answers
 }

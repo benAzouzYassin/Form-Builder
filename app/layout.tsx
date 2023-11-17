@@ -1,10 +1,9 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import { ClerkProvider, UserButton } from '@clerk/nextjs'
 import { ThemeProvider } from '@/components/providers/ThemeProvider'
-import ThemeSwitcher from '@/components/ThemeSwitcher'
-import Link from 'next/link'
+import { ClerkProvider } from '@clerk/nextjs'
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -23,16 +22,6 @@ export default function RootLayout({
       <body className={inter.className} >
         <ClerkProvider >
           <ThemeProvider>
-
-            {/* <nav className='flex  w-full bg-background  shadow-sm shadow-muted h-[8vh] overflow-hidden px-14'>
-              <Link href="/" className='mt-2'>
-                <img className='w-64  mt-1 ml-3' src="/logo.svg" alt="Form Builder logo" />
-              </Link>
-              <ThemeSwitcher />
-              <div className='h-fit my-auto ml-[-10px] scale-125 pr-5 hover:scale-[135%] transition-transform '>
-                <UserButton afterSignOutUrl='/signin' />
-              </div>
-            </nav> */}
             {children}
           </ThemeProvider>
         </ClerkProvider>

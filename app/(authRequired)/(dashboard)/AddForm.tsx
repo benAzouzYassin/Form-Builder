@@ -31,11 +31,21 @@ export default function AddForm() {
     }, [errorMessage])
 
     const handleSubmit = () => {
-        setIsLoading(true)
+
+        if (nameInput.length > 16) {
+            setErrorMessage("Name is too long !")
+            return
+        }
+
         if (nameInput.length < 4) {
             setErrorMessage("Name is too short !")
             return
         }
+        if (description.length > 50) {
+            setErrorMessage("description is too long !")
+            return
+        }
+        setIsLoading(true)
         const formId = crypto.randomUUID()
         const oldForms = JSON.parse(localStorage.getItem("forms") ?? "[]")
         localStorage.setItem("forms", JSON.stringify([...oldForms, { formName: nameInput, formDesc: description, formId: formId, data: [] }]))

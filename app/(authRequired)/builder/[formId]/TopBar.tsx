@@ -25,12 +25,15 @@ export function TopBar(props: Props) {
 
     const router = useRouter()
 
-    const publishingCb = () => {
-        router.push(`/form/${props.formId}`)
+    const publishingCb = (formId: string) => {
+        router.push(`/published/${formId}`)
+    }
+    const limitErrCb = () => {
+        router.push("/limitErr")
     }
 
     const handlePublishBtn = () => {
-        formCtx.publishForm(props.formId, formName, formDesc, publishingCb)
+        formCtx.publishForm(props.formId, formName, formDesc, limitErrCb, publishingCb)
         setIsPublishing(true)
     }
     return <div className="  bg-background mb-1  gap-5 h-[8vh] w-full border-b-2 px-20 shadow-background shadow-sm flex items-center">

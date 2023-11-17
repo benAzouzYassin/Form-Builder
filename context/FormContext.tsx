@@ -16,7 +16,7 @@ type ContextType = {
     updateBuilderElement: (newElement: BuilderElementType) => void
     saveElements: (formId: string, formName: string, formDesc: string) => void
     loadBuilderElements: (formId: string) => void
-    publishForm: (formId: string, formName: string, formDesc: string, cb: () => void) => void
+    publishForm: (formId: string, formName: string, formDesc: string, limitErrCb: () => void, cb: (formId: string) => void) => void
 }
 
 
@@ -174,16 +174,21 @@ export function FormContextProvider({ children }: { children: ReactElement[] | R
 
     }
 
-    const publishForm = (formId: string, formName: string, formDesc: string, cb: () => void) => {
+    const publishForm = (formId: string, formName: string, formDesc: string, limitErrCb: () => void, cb: (formId: string) => void) => {
 
         publishFormAction(formName, formDesc, JSON.stringify(builderElements))
             .then(res => {
+
                 if (res && res.success) {
                     const savedForms = JSON.parse(localStorage.getItem("forms") ?? "[]")
                     const newForms = savedForms.filter((form: SavedFormsType) => form.formId != formId)
                     localStorage.setItem("forms", JSON.stringify(newForms))
-                    cb()
+                    cb(res?.formId ?? "")
                 }
+                if (res && res.success === false && res.message === "forms limit excited") {
+                    limitErrCb()
+                }
+
             })
             .catch(err => console.log(err))
 

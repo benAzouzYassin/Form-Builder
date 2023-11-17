@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 
 export default function Form({ formSchema, formId }: { formSchema: string, formId: string }) {
+    console.log(formSchema)
     const schema: BuilderElementType[] = JSON.parse(formSchema ?? "[]")
 
     const [isLoading, setIsLoading] = useState(false)
@@ -28,7 +29,7 @@ export default function Form({ formSchema, formId }: { formSchema: string, formI
     }
 
     return <form action={clientAction} className=" w-[600px]  gap-4 shadow-xl rounded-lg p-5 border-2 flex flex-col  mx-auto min-h-[70vh] h-fit">
-        <input type="text" className="hidden" name="formId" value={formId} />
+        <input type="text" className="hidden" name="formId" readOnly value={formId} />
         {schema.map((elem, index) => <FormElement element={elem} key={index} />)}
         {error && <p className="text-red-500">something wrong happened. </p>}
         <button className="bg-white py-1 text-bold text-md text-black w-full mt-auto shadow  shadow-foreground/50 rounded-sm hover:bg-slate-200 hover:scale-[101%] transition-all  ">Submit</button >

@@ -55,7 +55,7 @@ export default function PreviewDateField(props: Props) {
                 />
             </PopoverContent>
         </Popover>
-        <input type="date" name={"date"} value={formatDateForInput(date)} className="hidden" />
+        <input type="date" name={props.label} value={formatDateForInput(date)} className="hidden" />
         <p className="ml-3 text-sm mt-1 text-foreground/70">{props.helperText}</p>
     </div>
 }
