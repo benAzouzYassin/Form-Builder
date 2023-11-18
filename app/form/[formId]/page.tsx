@@ -13,7 +13,7 @@ export default async function Page({ params }: { params: { formId: string } }) {
 
     newVisit(params.formId)
 
-    return <main className="flex flex-col pb-20 ">
+    return <main className="flex px-2 lg:px-0  flex-col pb-20 overflow-x-hidden ">
         <div className="w-full">
             <ThemeSwitcher />
         </div>

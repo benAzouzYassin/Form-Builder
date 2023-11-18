@@ -3,6 +3,7 @@ import { currentUser } from "@clerk/nextjs"
 
 export async function getUserStats() {
     try {
+
         const userData = await currentUser()
         const userMail = userData?.emailAddresses[0].emailAddress
         const userForms = await prisma.form.findMany({ where: { ownerEmail: userMail } })

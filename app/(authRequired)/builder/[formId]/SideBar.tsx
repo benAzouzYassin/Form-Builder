@@ -13,6 +13,7 @@ import CheckField from "@/components/icons/CheckFIeld";
 import { useContext } from "react";
 import { SettingsContext } from "@/context/ElementSettingsContext";
 import Settings from "./Settings";
+import SideLoadingItem from "./SideLoadingItem";
 
 
 

@@ -6,6 +6,7 @@ import SideBar from "./SideBar";
 import { useContext, useEffect } from "react";
 import { FormContext } from "@/context/FormContext";
 import { SettingsContextProvider } from "@/context/ElementSettingsContext";
+import SideBarLoading from "./SideBarLoading";
 
 
 

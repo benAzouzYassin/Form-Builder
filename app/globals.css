@@ -88,3 +88,12 @@ div {
 .cl-internal-b3fm6y {
   display: none;
 }
+
+@media screen and (max-width: 700px) {
+
+  .cl-internal-17ydaof {
+
+    border-radius: 5px;
+  }
+
+}

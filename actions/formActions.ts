@@ -119,8 +119,7 @@ export async function newVisit(formId: string) {
 export async function getFormSubmissions(formId: string) {
     try {
         const data = await prisma.submession.findMany({ where: { formId: formId } })
-        const submissions = data.map(d => JSON.parse(d.subSchema))
-
+        const submissions = data.map(d => JSON.parse(d.subSchema)).filter(elem => elem)
         return { success: true, data: submissions }
 
     } catch (error: any) {
@@ -136,7 +135,7 @@ export async function getFormLabels(formId: string) {
                 return element.label
 
             }
-        })
+        }).filter((elem: any) => elem)
         return labels as string[]
     } catch (error) {
         return []

@@ -17,7 +17,7 @@ const ThemeSwitcher = () => {
 
     return (
         <>
-            {mounted && <Tabs defaultValue={theme} className=" w-fit ml-auto mr-10 h-fit ">
+            {mounted && <Tabs defaultValue={theme} className=" lg:block hidden w-fit lg:ml-auto mr-auto ml-2 lg:mr-10 h-fit ">
                 <TabsList className='rounded-sm ml-auto mt-3 '>
                     <TabsTrigger onClick={() => setTheme("system")} className='py-1 px-3 scale-150 mx-2 rounded-sm' value="system"><DesktopIcon /></TabsTrigger>
                     <TabsTrigger onClick={() => setTheme("dark")} className='py-1 px-3 scale-150 mx-2 rounded-sm' value="dark"><MoonIcon /></TabsTrigger>
