@@ -24,7 +24,7 @@ export default function Thanks({ params }: { params: { formId: string } }) {
                 <p className="text-lg text-foreground/50">Thank you for your time we really appreciate it.</p>
                 <div>
                     <div className=" mt-10 mx-auto border-t-[1px] border-foreground/20 pt-8 ">
-                        <input readOnly className="z-50 border-[1px] border-foreground/20 focus-within:border-foreground/40 p-2 rounded-sm  w-full focus-within:outline-none bg-background" value={`my-domain/form/${params.formId}`} />
+                        <input readOnly className="z-50 border-[1px] border-foreground/20 focus-within:border-foreground/40 p-2 rounded-sm  w-full focus-within:outline-none bg-background" value={`https://form-builder-one.vercel.app/form/${params.formId}`} />
                         <CopyBtn text="my-domain/forms/${params.formId}" />
                     </div>
                 </div>

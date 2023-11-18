@@ -38,7 +38,7 @@ export default async function Page({ params }: { params: { formId: string } }) {
                 <Link href={`/form/${params.formId}`} className="ml-auto" ><Button className=" scale-90 px-12 text-md font-medium">Visit</Button></Link>
             </div>
             <div className="lg:flex hidden mt-8 border-b-[1px] items-center px-56 pb-8">
-                <input type="text" readOnly value={`my-domain/form/${params.formId}`} className="focus-within:outline-none focus-within:border-2 focus-within:border-foreground/30 pl-2 bg-background border-[1px] rounded-sm w-full py-1" />
+                <input type="text" readOnly value={`https://form-builder-one.vercel.app/form/${params.formId}`} className="focus-within:outline-none focus-within:border-2 focus-within:border-foreground/30 pl-2 bg-background border-[1px] rounded-sm w-full py-1" />
                 <Button className="ml-auto scale-90 px-12 text-md font-medium">Share link</Button>
             </div>
             <div className="flex  flex-row lg:flex-nowrap flex-wrap w-full gap-8 lg:px-56 mt-10  ">
