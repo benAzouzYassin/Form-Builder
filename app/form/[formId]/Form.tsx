@@ -27,7 +27,7 @@ export default function Form({ formSchema, formId }: { formSchema: string, formI
         }
     }
 
-    return <form onSubmit={() => setIsLoading(true)} action={clientAction} className="lg:w-[600px] w-full mt-10 lg:mt-0  gap-4 shadow-xl lg:border-2 rounded-lg lg:p-5  flex flex-col  mx-auto min-h-[70vh] h-fit">
+    return <form onSubmit={() => setIsLoading(true)} action={clientAction} className="lg:w-[600px] w-full mt-10 lg:mt-0  gap-4 shadow-xl lg:border-2 rounded-lg lg:p-5  flex flex-col  mx-auto min-h-[70vh] h-fit overflow-hidden">
         <input type="text" className="hidden" name="formId" readOnly value={formId} />
         {schema.map((elem, index) => <FormElement element={elem} key={index} />)}
         {error && <p className="text-red-500">something wrong happened. </p>}
