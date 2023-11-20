@@ -23,7 +23,7 @@
 <!-- TABLE OF CONTENTS -->
 ## Table of contents
 <details open="open">
-  <summary>Contents</summary>
+  <summary>Content</summary>
   <ol>
     <li>
       <a href="#about-the-project">About The Project</a>
@@ -32,7 +32,7 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#pages">Pages</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -58,19 +58,34 @@ You can support the development of Form-Builder! 🌟
 
 ### Built With
 
-* [Java](https://en.wikipedia.org/wiki/Java_programming_language)
-* [Swing](https://en.wikipedia.org/wiki/Swing_(Java))
-* [NetBeans 8.2](https://netbeans.apache.org/)
+* [NextJs](https://en.wikipedia.org/wiki/Next.js)
+* [Typescript](https://en.wikipedia.org/wiki/TypeScript)
+* [Tailwind css](https://en.wikipedia.org/wiki/Tailwind_CSS)
 
 ## Usage
-1. Download the code.
-2. Compile and Run (make sure you have JDK/JRE & Python installed and configured to run from the command line)
-3. Enjoy calculating! :)
+1. Go to https://form-builder-one.vercel.app/.
+2. Authenticate yourself (SingUp Or SignIn)
+3. Build your form ! :)
 
 <!-- ROADMAP -->
-## Roadmap
+## Pages
 
-See the [open issues](https://github.com/jihedkdiss/jCalculator/issues) for a list of proposed features (and known issues).
+### Dashboard Page :
+<p align="center">
+    <img src="dash.png" alt="Screenshot">
+</p>
+
+### Builder Page (***Element setting is open***):
+<p align="center">
+    <img src="builder-2.png" alt="Screenshot">
+</p>
+
+### Submissions Page  :
+<p align="center">
+    <img src="submissions.png" alt="Screenshot">
+</p>
+
+
 
 
 
@@ -90,13 +105,15 @@ Contributions are what make the open source community such an amazing place to b
 <!-- LICENSE -->
 ## License
 
-Distributed under the GNU General Public License. See `LICENSE` for more information.
+Distributed under the MIT License. See `LICENSE` for more information.
 
 
 
 <!-- CONTACT -->
 ## Contact
 
-Jihed Kdiss - [@jiokdiss](https://facebook.com/jiokdiss) - jihedkdiss@outlook.com
+Yassine ben azouz - [@Yassine ben azouz](https://www.linkedin.com/in/yassine-ben-azouz-724782242/) - yassinebenazouz123@gmail.com
 
-Project Link: [https://github.com/jihedkdiss/jCalculator](https://github.com/jihedkdiss/jCalculator)
+Live Demo - [https://form-builder-one.vercel.app/](https://form-builder-one.vercel.app/)
+
+Source Code: [https://github.com/benAzouzYassin/Form-Builder](https://github.com/benAzouzYassin/Form-Builder)
