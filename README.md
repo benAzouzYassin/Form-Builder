@@ -54,7 +54,7 @@ You can support the development of Form-Builder! 🌟
 
 * Very clean and modern interface with easy user experience.
 * Easy and fast way for crating forms.
-* User friendly dashboard form visualizing form submissions.
+* User friendly dashboard for visualizing form submissions.
 
 ### Built With
 
