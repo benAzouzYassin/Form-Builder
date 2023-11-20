@@ -3,6 +3,7 @@ import StatsCard from "@/app/(authRequired)/(dashboard)/StatsCard";
 import Nav from "@/components/Nav";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import LoadingStatCard from "./LoadingStatsCard";
 
 export default async function Page({ params }: { params: { formId: string } }) {
     const form = await getFormById(params.formId)
@@ -49,12 +50,12 @@ export default async function Page({ params }: { params: { formId: string } }) {
             </div>
             <div className="lg:px-56 ">
                 <p className="text-3xl font-bold pl-5 mt-10">Submissions</p>
-                <div className="w-full  overflow-x-scroll   mt-5 ">
+                <div className="w-full lg:px-0 px-1  overflow-x-scroll   mt-5 ">
                     <div className=" border-b-[1px] bg-accent/30  flex  gap-2 w-full pl-4 h-10 rounded-t-md items-center text-foreground/80 lg:text-lg text-sm font-normal">
-                        {labels.map((label, index) => <span style={{ width: widthPercent }} className="text-sm" key={index}>{label?.replace(":", "").trim()}</span>)}
+                        {labels.map((label, index) => <span style={{ width: widthPercent }} className="text-sm line-clamp-1" key={index}>{label?.replace(":", "").trim()}</span>)}
                     </div>
 
-                    {answers.map((data, index) => <div className="hover:bg-accent/10 hover:cursor-pointer flex pl-4 border-b-[1px] h-10 items-center text-sm text-foreground/60 font-semibold gap-3 w-full" key={index}>{data.map((answer, index) => <span style={{ width: widthPercent }} key={index}>{answer}</span>)}</div>)}
+                    {answers.map((data, index) => <div className=" hover:bg-accent/10 hover:cursor-pointer flex pl-4 border-b-[1px] h-10 items-center text-sm text-foreground/60 font-semibold gap-3 w-full" key={index}>{data.map((answer, index) => <span className="line-clamp-1" style={{ width: widthPercent }} key={index}>{answer}</span>)}</div>)}
                 </div>
             </div>
         </div>
