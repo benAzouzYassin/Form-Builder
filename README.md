@@ -48,7 +48,7 @@
 
 <b>Form-Builder</b> is an open-source platform built using NextJs 13. The goal from our platform is to simplify the process of creating good looking forms.
 The app provide the user with fully customizable draggable components to build his wished UI.
-You can support the development of Form-Builder! 🌟
+You can support the development of Form-Builder by starring this project! 🌟
 
 ### Features
 
