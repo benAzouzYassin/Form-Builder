@@ -55,7 +55,7 @@ export default function Page({ params }: { params: { formId: string } }) {
 
     return <div>
         <Nav />
-        <main style={{ overflowY: previewMode ? "hidden" : "visible" }} className=" relative overflow-y-visible  ease-out transition-all overflow-hidden border-2 max-w-[100vw] "  >
+        <main style={{ overflowY: previewMode ? "hidden" : "visible" }} className="lg:block hidden relative overflow-y-visible  ease-out transition-all overflow-hidden border-2 max-w-[100vw] "  >
             <FormContextProvider>
                 <div className={contentClass}>
                     <TopBar formId={params.formId} startPreview={startPreview} name={example.name} />
@@ -64,5 +64,6 @@ export default function Page({ params }: { params: { formId: string } }) {
                 <Preview closePreviewMode={closePreviewMode} className={previewDynamicClass} theme={theme} />
             </FormContextProvider>
         </main>
+        <div className="px-5 text-center mt-40 lg:hidden block "><p className="text-foreground/90 text-xl  font-bold">Unfortunately This page is designed for larger screens.</p><small className="text-foreground/60">Please access this page on a computer.</small></div>
     </div>
 }
