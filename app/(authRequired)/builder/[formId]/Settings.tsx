@@ -21,28 +21,61 @@ export default function Settings() {
     const settings = Object.keys(settingsContext.currentSettings)
 
     const formContext = useContext(FormContext)
+
     const renderSettingsComponent = (settingName: string) => {
         switch (settingName) {
             case "label":
-                return <LabelSetting onChangeCb={(newValue) => formContext.updateBuilderElement({ ...settingsContext.currentSettings, label: newValue })} />
+                return <LabelSetting onChangeCb={(newValue) => {
+                    settingsContext.updateCurrentSettings({ ...settingsContext.currentSettings, label: newValue })
+                    formContext.updateBuilderElement({ ...settingsContext.currentSettings, label: newValue })
+                }} />
+
             case "helperText":
-                return <HelperTextSetting onChangeCb={(newValue) => formContext.updateBuilderElement({ ...settingsContext.currentSettings, helperText: newValue })} />
+                return <HelperTextSetting onChangeCb={(newValue) => {
+                    settingsContext.updateCurrentSettings({ ...settingsContext.currentSettings, helperText: newValue })
+                    formContext.updateBuilderElement({ ...settingsContext.currentSettings, helperText: newValue })
+                }} />
+
             case "required":
-                return <RequiredSetting cb={() => formContext.updateBuilderElement({ ...settingsContext.currentSettings, required: !settingsContext.currentSettings.required })} />
+                return <RequiredSetting cb={() => {
+                    settingsContext.updateCurrentSettings({ ...settingsContext.currentSettings, required: !settingsContext.currentSettings.required })
+                    formContext.updateBuilderElement({ ...settingsContext.currentSettings, required: !settingsContext.currentSettings.required })
+                }} />
             case "placeHolder":
-                return <PlaceHolderSetting onChangeCb={(newValue) => formContext.updateBuilderElement({ ...settingsContext.currentSettings, placeHolder: newValue })} />
+                return <PlaceHolderSetting onChangeCb={(newValue) => {
+                    settingsContext.updateCurrentSettings({ ...settingsContext.currentSettings, placeHolder: newValue })
+                    formContext.updateBuilderElement({ ...settingsContext.currentSettings, placeHolder: newValue })
+                }} />
             case "rows":
-                return <RowsSetting onChangeCb={(newValue) => formContext.updateBuilderElement({ ...settingsContext.currentSettings, rows: newValue })} />
+                return <RowsSetting onChangeCb={(newValue) => {
+                    settingsContext.updateCurrentSettings({ ...settingsContext.currentSettings, rows: newValue })
+                    formContext.updateBuilderElement({ ...settingsContext.currentSettings, rows: newValue })
+                }} />
             case "options":
-                return <OptionsSetting onChangeCb={(newValue) => formContext.updateBuilderElement({ ...settingsContext.currentSettings, options: newValue })} />
+                return <OptionsSetting onChangeCb={(newValue) => {
+                    settingsContext.updateCurrentSettings({ ...settingsContext.currentSettings, options: newValue })
+                    formContext.updateBuilderElement({ ...settingsContext.currentSettings, options: newValue })
+                }} />
             case "text":
-                return <TextSetting onChangeCb={(newValue) => formContext.updateBuilderElement({ ...settingsContext.currentSettings, text: newValue })} />
+                return <TextSetting onChangeCb={(newValue) => {
+                    formContext.updateBuilderElement({ ...settingsContext.currentSettings, text: newValue })
+                    settingsContext.updateCurrentSettings({ ...settingsContext.currentSettings, text: newValue })
+                }} />
             case "height":
-                return <HeightSetting onChangeCb={(newValue) => formContext.updateBuilderElement({ ...settingsContext.currentSettings, height: newValue })} />
+                return <HeightSetting onChangeCb={(newValue) => {
+                    settingsContext.updateCurrentSettings({ ...settingsContext.currentSettings, height: newValue })
+                    formContext.updateBuilderElement({ ...settingsContext.currentSettings, height: newValue })
+                }} />
             case "max":
-                return <MaxSetting onChangeCb={(newValue) => formContext.updateBuilderElement({ ...settingsContext.currentSettings, max: newValue })} />
+                return <MaxSetting onChangeCb={(newValue) => {
+                    settingsContext.updateCurrentSettings({ ...settingsContext.currentSettings, max: newValue })
+                    formContext.updateBuilderElement({ ...settingsContext.currentSettings, max: newValue })
+                }} />
             case "min":
-                return <MinSetting onChangeCb={(newValue) => formContext.updateBuilderElement({ ...settingsContext.currentSettings, min: newValue })} />
+                return <MinSetting onChangeCb={(newValue) => {
+                    formContext.updateBuilderElement({ ...settingsContext.currentSettings, min: newValue })
+                    settingsContext.updateCurrentSettings({ ...settingsContext.currentSettings, min: newValue })
+                }} />
 
             default:
                 return <div></div>;
