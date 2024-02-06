@@ -38,11 +38,12 @@ export default function Builder({ formId }: { formId: string }) {
     }
 
 
-    return <div className="flex max-w-[100vw]  overflow-hidden   ">
+    return <div className="flex max-w-[100vw] overflow-hidden   ">
         <DndContext onDragEnd={handleDragEnd} autoScroll={false}  >
             <SettingsContextProvider>
                 <Editor />
                 <SideBar />
+
             </SettingsContextProvider>
         </DndContext>
 

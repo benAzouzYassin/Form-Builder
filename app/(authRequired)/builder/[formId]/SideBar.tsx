@@ -19,7 +19,7 @@ import SideLoadingItem from "./SideLoadingItem";
 
 export default function SideBar() {
     const settingsContext = useContext(SettingsContext)
-    return <aside style={{ position: settingsContext.isOpen ? "relative" : "static" }} className=" max-w-[20%]  ml-auto px-8  pt-5 h-fit overflow-hidden" >
+    return <aside style={{ position: settingsContext.isOpen ? "relative" : "static" }} className="mx-auto px-2  pt-5 h-fit overflow-hidden" >
 
 
         {settingsContext.isOpen && <Settings />}
@@ -27,7 +27,7 @@ export default function SideBar() {
         <p className="text-foreground/70 border-b-[1px] py-1 ">Drag and drop elements</p>
 
         <p className="text-foreground/70  mt-3" >Layout elements</p>
-        <div className="flex flex-wrap gap-5 pt-5">
+        <div className="grid grid-cols-2 items-start  gap-4 pt-5">
             <DraggableElement text="Title field" ><H1Icon /></DraggableElement>
             <DraggableElement text="Sub title field" ><H2Icon /></DraggableElement>
             <DraggableElement text="Paragraph field" ><ParagraphField /></DraggableElement>
@@ -36,7 +36,7 @@ export default function SideBar() {
             <div className="w-24"></div>
         </div>
         <p className="text-foreground/70  mt-5" >Form elements</p>
-        <div className="flex flex-wrap gap-5 pt-5">
+        <div className="grid grid-cols-2 gap-4 pt-5">
             <DraggableElement text="Text field" ><TextInput /></DraggableElement>
             <DraggableElement text="Number field" ><NumberInput /></DraggableElement>
             <DraggableElement text="Textarea field" ><TextareaInput /></DraggableElement>

@@ -24,7 +24,7 @@ export default function FormDraft(props: Props) {
     const viewFormSubmissions = () => {
         router.push(`submissions/${props.id}`)
     }
-    return <div className="relative flex flex-col lg:w-[32%] lg:mx-0 mx-auto w-72 h-44 border-2 p-4 border-muted  rounded-md ">
+    return <div className="relative flex flex-col lg:w-[32%] lg:mx-0 mx-auto w-72 h-48 border-2 p-4 border-muted  rounded-md ">
         <div className="absolute top-4 right-3  text-xs font-semibold ">{props.status === "editing" ? <span className="w-full rounded-md py-1 px-2 bg-destructive text-white ">Draft</span> : <span className="w-full rounded-md py-1 px-2 bg-foreground text-background ">Published</span>}</div>
         <p className="font-bold text-foreground opacity-90  text-2xl">{props.name}</p>
         <div className="flex w-full">
