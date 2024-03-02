@@ -82,7 +82,7 @@ export default function Settings() {
         }
     }
 
-    return <div className="absolute bg-background w-[85%]  h-full flex flex-col ">
+    return <div className="absolute bg-background w-full  h-full flex flex-col ">
         <div className="flex items-center border-b-[1px] pb-1 mr-3 ">
             <span className=" text-foreground/50 font-normal mt-2">Element Properties</span>
             <span onClick={settingsContext.closeSettings} className=" ml-auto  scale-90  w-fit  hover:bg-muted text-foreground/60 hover:cursor-pointer transition-all ease-in  border-2 py-1 p-3 rounded-lg font-semibold " >X</span>
