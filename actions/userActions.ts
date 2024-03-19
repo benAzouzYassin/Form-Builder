@@ -1,5 +1,5 @@
 import { prisma } from "@/prisma/client"
-import { currentUser } from "@clerk/nextjs"
+import { currentUser, useAuth } from "@clerk/nextjs"
 
 export async function getUserStats() {
     try {

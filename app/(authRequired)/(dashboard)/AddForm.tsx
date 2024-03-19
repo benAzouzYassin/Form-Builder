@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { useRouter } from "next/navigation"
-import { useEffect, useState } from "react"
+import { FormEvent, useEffect, useState } from "react"
 
 
 export default function AddForm() {
@@ -30,18 +30,18 @@ export default function AddForm() {
         }
     }, [errorMessage])
 
-    const handleSubmit = () => {
-
-        if (nameInput.length > 16) {
+    const handleSubmit = (e: any) => {
+        e?.preventDefault()
+        if (nameInput.length > 50) {
             setErrorMessage("Name is too long !")
             return
         }
 
-        if (nameInput.length < 4) {
+        if (nameInput.length < 1) {
             setErrorMessage("Name is too short !")
             return
         }
-        if (description.length > 50) {
+        if (description.length > 100) {
             setErrorMessage("description is too long !")
             return
         }
@@ -69,7 +69,7 @@ export default function AddForm() {
                         Create new form to start collecting responses !
                     </DialogDescription>
                 </DialogHeader>
-                <div className="flex flex-col gap-4 py-4">
+                <form onSubmit={handleSubmit} className="flex flex-col gap-4 py-4">
                     <div >
                         <label htmlFor="name" className="text-foreground/80 font-medium">
                             Form name
@@ -83,10 +83,8 @@ export default function AddForm() {
                         </label>
                         <textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Describe your form..." className=" h-full mt-2 flex  w- rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"></textarea>
                     </div>
-                </div>
-                <DialogFooter>
-                    <Button className="w-full" disabled={isLoading} onClick={handleSubmit} >{!isLoading && "Save form"} {isLoading && <div className="w-10 h-2 flex "><span className="w-2 h-2 bg-background/60 animate-bounce rounded-full  duration-500 "></span><span className=" ml-[2px] w-2 h-2 bg-background/60 animate-bounce rounded-full delay-100  duration-500  "></span><span className="ml-[2px] w-2 h-2 bg-background/60 delay-150 duration-500 animate-bounce  rounded-full"></span></div>}</Button>
-                </DialogFooter>
+                    <Button className="w-full mt-[20px]" onClick={handleSubmit} disabled={isLoading}  >{!isLoading && "Save form"} {isLoading && <div className="w-10 h-2 flex "><span className="w-2 h-2 bg-background/60 animate-bounce rounded-full  duration-500 "></span><span className=" ml-[2px] w-2 h-2 bg-background/60 animate-bounce rounded-full delay-100  duration-500  "></span><span className="ml-[2px] w-2 h-2 bg-background/60 delay-150 duration-500 animate-bounce  rounded-full"></span></div>}</Button>
+                </form>
             </DialogContent>
         </Dialog>
     )
