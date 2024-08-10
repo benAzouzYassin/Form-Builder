@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;600;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;600;700;800&display=swap");
 
 * {
   font-family: "Ubuntu", sans-serif;
@@ -39,7 +39,7 @@
     --radius: 0.5rem;
   }
 
-  [data-theme='dark'] {
+  [data-theme="dark"] {
     --background: 240 10% 3.9%;
     --foreground: 210 40% 98%;
 
@@ -89,10 +89,7 @@
 }
 
 @media screen and (max-width: 700px) {
-
   .cl-internal-17ydaof {
-
     border-radius: 5px;
   }
-
 }

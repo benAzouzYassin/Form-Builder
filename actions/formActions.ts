@@ -103,19 +103,6 @@ export async function submitFormAction(data: FormData) {
         return { success: false }
     }
 }
-
-export async function newVisit(formId: string) {
-    try {
-        const form = await prisma.form.findFirst({ where: { id: formId } })
-        if (form?.views != undefined) {
-            await prisma.form.update({ where: { id: formId }, data: { views: form.views + 1 } })
-
-        }
-    } catch (err) {
-        console.log(err)
-    }
-}
-
 export async function getFormSubmissions(formId: string) {
     try {
         const data = await prisma.submession.findMany({ where: { formId: formId } })
